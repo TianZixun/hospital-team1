@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hospital-team1"
+version = "0.1.0"
+description = "Starter Python project with tests, docs, and VSCode settings."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["coverage[toml]>=7.6"]
+
+[tool.coverage.run]
+branch = true
+source = ["hospital_team1"]
+
+[tool.coverage.report]
+show_missing = true
