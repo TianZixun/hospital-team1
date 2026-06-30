@@ -1,13 +1,9 @@
-from hospital_team1.calculator import Calculator
-
-
 def main() -> None:
-    calc = Calculator()
-    print("Hospital Team 1 project is ready.")
-    print(f"2 + 3 = {calc.add(2, 3)}")
-    print(f"7 - 4 = {calc.subtract(7, 4)}")
-    print(f"6 * 5 = {calc.multiply(6, 5)}")
-    print(f"8 / 2 = {calc.divide(8, 2)}")
+    print("Hospital patient triage scheduling system scaffold is ready.")
+    print("Core package: hospital_team1/")
+    print("Assignment notes: docs/index.md")
+    print("Future placement rules: docs/development_rules.md")
+    print("Quick smoke test: python test.py")
 
 
 if __name__ == "__main__":

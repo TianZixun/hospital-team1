@@ -1,57 +1,61 @@
 # Hospital Team 1
 
-This repository is a starter Python project that matches the general course
-requirements from the provided PDF and is ready to be extended with the real
-assignment logic.
+This repository is now scaffolded for Project 1: hospital patient triage
+scheduling system.
 
-## Included
+## Current Purpose
 
-- A Python package in `hospital_team1/`
-- Unit tests in `tests/`
-- Markdown documentation in `docs/`
-- VSCode settings for Python and Code Runner
-- A `.gitignore` file for common Python artifacts
+- Keep the project structure aligned with the assignment.
+- Separate data structures, simulation logic, analysis, and visualization.
+- Mirror every core module with tests.
+- Keep written report materials under `docs/`.
 
 ## Project Structure
 
 ```text
 hospital_team1/
+  models/          Patient and triage enum
+  structures/      Linked list and waiting room
+  queues/          Heap queue and second queue implementation
+  data/            CSV generation and import
+  simulation/      Scheduling simulation and compliance logic
+  analysis/        Performance and waiting-room analysis
+  visualization/   CLI/GUI views
+  utils/           Shared constants and time helpers
 tests/
+scripts/
+datasets/
 docs/
+slides/
 main.py
 test.py
 README.md
 pyproject.toml
 ```
 
-## Run The Project
+## What Goes Where
+
+- Data model changes: `hospital_team1/models/`
+- Linked-list and waiting room logic: `hospital_team1/structures/`
+- Priority-queue implementations: `hospital_team1/queues/`
+- CSV generation and loading: `hospital_team1/data/`
+- Simulation rules and metrics: `hospital_team1/simulation/`
+- Performance and insight analysis: `hospital_team1/analysis/`
+- GUI and visual demos: `hospital_team1/visualization/`
+- Tests: mirror the code structure under `tests/`
+- Markdown report: `docs/`
+- Presentation materials: `slides/`
+
+## Run The Scaffold
 
 ```bash
 python main.py
-```
-
-## Run Tests
-
-```bash
+python test.py
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
-## Optional Test Coverage
+## Persistent Placement Rules
 
-Install the optional dev dependency:
-
-```bash
-pip install -e .[dev]
-```
-
-Then run:
-
-```bash
-python -m coverage run -m unittest discover -s tests -p "test_*.py"
-python -m coverage report
-```
-
-## Next Step
-
-Replace the example calculator logic with the actual project requirements when
-you receive the real assignment brief.
+Future placement rules for this repo are written in `docs/development_rules.md`.
+When you ask for a new feature later, it should be added according to that map
+instead of dropping code randomly into the root directory.

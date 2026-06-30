@@ -1,42 +1,27 @@
-# Project Documentation
+# Project 1 Overview
 
-## Overview
+## Assignment Topic
 
-This document is the starter report for the Python course project. The current
-implementation contains a small calculator example so that the repository has
-working source code, unit tests, and documentation.
+Hospital patient triage scheduling system.
 
-## Folder Layout
+## Main Delivery Blocks
 
-- `hospital_team1/`: the main project package
-- `tests/`: unit tests written with `unittest`
-- `docs/`: Markdown documentation for the final report
-- `main.py`: a simple entry point for running the example
-- `test.py`: a quick test program for VSCode run verification
+1. Core data structures
+2. Two priority-queue implementations
+3. Dataset generation and CSV import
+4. Duty-shift simulation
+5. Performance comparison
+6. Waiting-room analysis
+7. Visualization and interaction
+8. Open-ended prediction extension
 
-## How To Run
+## Repository Intent
 
-```bash
-python main.py
-```
+This repo is now organized around those delivery blocks so future work can be
+added without rethinking the file layout each time.
 
-## How To Test
+## Read These Next
 
-```bash
-python -m unittest discover -s tests -p "test_*.py"
-```
-
-## Coverage
-
-After installing the optional dev dependency, use:
-
-```bash
-python -m coverage run -m unittest discover -s tests -p "test_*.py"
-python -m coverage report
-```
-
-## What To Replace
-
-- Replace the example calculator with the real project logic.
-- Expand this document into the final report for the assignment.
-- Add more tests as the project grows.
+- `docs/module_map.md`: file-to-task mapping
+- `docs/development_rules.md`: future placement contract
+- `docs/report_outline.md`: Markdown report outline

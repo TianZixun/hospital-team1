@@ -1,4 +1,4 @@
-from .calculator import Calculator
+from .models import Patient, TriageLevel
+from .structures import WaitingRoom
 
-__all__ = ["Calculator"]
-
+__all__ = ["Patient", "TriageLevel", "WaitingRoom"]

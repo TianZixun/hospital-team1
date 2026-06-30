@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "hospital-team1"
 version = "0.1.0"
-description = "Starter Python project with tests, docs, and VSCode settings."
+description = "Hospital patient triage scheduling system scaffold."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
