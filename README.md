@@ -20,7 +20,7 @@ hospital_team1/
   data/            CSV generation and import
   simulation/      Scheduling simulation and compliance logic
   analysis/        Performance and waiting-room analysis
-  visualization/   CLI/GUI views
+  visualization/   CLI/GUI views and Flask dashboard
   utils/           Shared constants and time helpers
 tests/
 scripts/
@@ -53,6 +53,22 @@ python main.py
 python test.py
 python -m unittest discover -s tests -p "test_*.py"
 ```
+
+## Run The Flask Dashboard
+
+```bash
+python scripts/launch_gui.py
+```
+
+Then open:
+
+```text
+http://127.0.0.1:5055
+```
+
+The current dashboard is a bilingual UI scaffold. All demo values are placed in
+`hospital_team1/visualization/dashboard_data.py` so you can later replace them
+with real queue, simulation, CSV, and analysis results.
 
 ## Persistent Placement Rules
 

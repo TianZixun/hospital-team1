@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Flask Dashboard",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/launch_gui.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

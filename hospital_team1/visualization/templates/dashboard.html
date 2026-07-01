@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ app_title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+  </head>
+  <body>
+    <div class="dashboard-page">
+      <header class="topbar panel">
+        <div class="brand-block">
+          <div class="brand-mark">+</div>
+          <div>
+            <h1>{{ app_title }}</h1>
+            <p>{{ subtitle }}</p>
+          </div>
+        </div>
+        <div class="topbar-meta">
+          <span class="meta-chip">{{ system_overview.clock }}</span>
+          <span class="meta-chip success">{{ system_overview.status }}</span>
+        </div>
+      </header>
+
+      <div class="dashboard-grid">
+        <aside class="sidebar">
+          <section class="panel sidebar-panel">
+            <div class="panel-heading">
+              <h2>Simulation Control (仿真控制)</h2>
+            </div>
+
+            <section class="sidebar-section">
+              <p class="section-label">1. Data (数据)</p>
+              <div class="upload-card">
+                <div class="upload-icon">↥</div>
+                <strong>Import CSV (导入 CSV)</strong>
+                <p>Click to upload or drag and drop (点击或拖拽文件)</p>
+              </div>
+              <div class="dataset-meta">
+                <p>Last dataset (最近数据集): {{ dataset_overview.file_name }}</p>
+                <p>Rows (行数): {{ dataset_overview.rows }}</p>
+                <p>Generated (生成时间): {{ dataset_overview.generated_at }}</p>
+              </div>
+            </section>
+
+            <section class="sidebar-section">
+              <p class="section-label">2. Queue Implementation (队列实现)</p>
+              <label class="select-wrap">
+                <select aria-label="Queue mode">
+                  {% for mode in queue_modes %}
+                  <option>{{ mode.name }}</option>
+                  {% endfor %}
+                </select>
+              </label>
+              <p class="helper-text">{{ queue_modes[0].desc }}</p>
+            </section>
+
+            <section class="sidebar-section">
+              <p class="section-label">3. Simulation Control (仿真控制)</p>
+              <div class="button-stack">
+                {% for button in control_buttons %}
+                <button type="button" class="control-button {{ button.tone }}">{{ button.label }}</button>
+                {% endfor %}
+              </div>
+            </section>
+          </section>
+
+          <section class="panel status-panel">
+            <div class="panel-heading">
+              <h2>Simulation Time (仿真时间)</h2>
+            </div>
+            <strong class="runtime">{{ system_overview.runtime }}</strong>
+            <p>Simulated Patients (模拟患者): {{ system_overview.simulated_patients }}</p>
+            <div class="progress-track">
+              <span style="width: {{ system_overview.utilization_percent }}%"></span>
+            </div>
+            <div class="status-row">
+              <span>Status (状态):</span>
+              <strong>{{ system_overview.status }}</strong>
+            </div>
+            <div class="status-row">
+              <span>Utilization (利用率):</span>
+              <strong>{{ system_overview.utilization_label }}</strong>
+            </div>
+          </section>
+        </aside>
+
+        <main class="main-board">
+          <section class="metrics-row">
+            {% for card in summary_cards %}
+            <article class="panel metric-card">
+              <div class="metric-icon {{ card.tone }}">{{ card.badge }}</div>
+              <div>
+                <p>{{ card.title }}</p>
+                <strong>{{ card.value }}</strong>
+                <span class="{{ card.tone }}">{{ card.delta }}</span>
+              </div>
+            </article>
+            {% endfor %}
+          </section>
+
+          <section class="content-row primary-row">
+            <article class="panel board-card">
+              <div class="card-head">
+                <div>
+                  <h3>Waiting Room (候诊区) - Linked List (链表结构)</h3>
+                  <div class="legend">
+                    <span class="legend-item high">High (高)</span>
+                    <span class="legend-item medium">Medium (中)</span>
+                    <span class="legend-item low">Low (低)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="patient-flow">
+                {% for patient in waiting_room_patients %}
+                <div class="patient-card {{ patient.tone }}">
+                  <strong>ID: {{ patient.patient_id }}</strong>
+                  <p>Name (姓名): {{ patient.name }}</p>
+                  <p>Priority (优先级): {{ patient.priority }}</p>
+                  <p>Arrival (到达): {{ patient.arrival }}</p>
+                  <p>Wait (等待): {{ patient.wait }}</p>
+                </div>
+                {% if not loop.last %}
+                <div class="flow-arrow">→</div>
+                {% else %}
+                <div class="flow-null">NULL (空)</div>
+                {% endif %}
+                {% endfor %}
+              </div>
+              <div class="card-foot">
+                <span>Total in Waiting Room (候诊人数): 24</span>
+                <span>Last Updated (最后更新): 10:24:18</span>
+              </div>
+            </article>
+
+            <article class="panel board-card">
+              <div class="card-head">
+                <div>
+                  <h3>Priority Queue (优先队列) - Heap (堆结构)</h3>
+                  <p class="helper-text">Replace with live heap output from the real queue implementation later.</p>
+                </div>
+              </div>
+              <div class="heap-tree">
+                {% for level in heap_levels %}
+                <div class="heap-level">
+                  {% for node in level %}
+                  <div class="heap-node {{ node.tone }}">
+                    <strong>{{ node.label }}</strong>
+                    <span>{{ node.priority }}</span>
+                  </div>
+                  {% endfor %}
+                </div>
+                {% endfor %}
+              </div>
+              <div class="card-foot">
+                <span>Heap Size (堆大小): 24</span>
+                <span>Last Updated (最后更新): 10:24:18</span>
+              </div>
+            </article>
+          </section>
+
+          <section class="content-row analysis-row">
+            <article class="panel info-card">
+              <div class="card-head">
+                <h3>Anomaly Detection (异常检测)</h3>
+              </div>
+              <div class="risk-grid">
+                <div class="risk-pill high">
+                  <strong>3</strong>
+                  <span>High Risk (高风险)</span>
+                </div>
+                <div class="risk-pill medium">
+                  <strong>7</strong>
+                  <span>Medium Risk (中风险)</span>
+                </div>
+                <div class="risk-pill low">
+                  <strong>0</strong>
+                  <span>Low Risk (低风险)</span>
+                </div>
+              </div>
+              <div class="list-card">
+                {% for item in recent_anomalies %}
+                <div class="alert-row">
+                  <span class="alert-dot">!</span>
+                  <p>{{ item.message }}</p>
+                  <small>{{ item.time }}</small>
+                </div>
+                {% endfor %}
+              </div>
+            </article>
+
+            <article class="panel info-card">
+              <div class="card-head">
+                <h3>Predicted Wait Times (预测等待时间)</h3>
+              </div>
+              <table class="compact-table">
+                <thead>
+                  <tr>
+                    <th>Priority (优先级)</th>
+                    <th>Predicted Wait (预测等待)</th>
+                    <th>Trend (趋势)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in predicted_rows %}
+                  <tr>
+                    <td>{{ row.priority }}</td>
+                    <td>{{ row.wait }}</td>
+                    <td class="{{ row.tone }}">{{ row.trend }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <div class="sparkline-card" aria-hidden="true">
+                <svg viewBox="0 0 320 120" preserveAspectRatio="none">
+                  <line x1="0" y1="95" x2="320" y2="95"></line>
+                  <line x1="0" y1="60" x2="320" y2="60"></line>
+                  <line x1="0" y1="25" x2="320" y2="25"></line>
+                  <polyline class="high-line" points="0,40 25,34 50,38 75,32 100,36 125,28 150,31 175,27 200,35 225,29 250,33 275,26 320,35"></polyline>
+                  <polyline class="medium-line" points="0,62 25,58 50,60 75,57 100,63 125,56 150,59 175,54 200,58 225,53 250,56 275,51 320,55"></polyline>
+                  <polyline class="low-line" points="0,82 25,80 50,81 75,78 100,82 125,79 150,81 175,76 200,80 225,74 250,79 275,73 320,77"></polyline>
+                </svg>
+              </div>
+            </article>
+
+            <article class="panel info-card">
+              <div class="card-head">
+                <h3>Overtime Risk (加班风险)</h3>
+              </div>
+              <div class="gauge-wrap">
+                <div class="gauge" style="--gauge-value: {{ overtime_card.risk_percent }};">
+                  <div class="gauge-arc"></div>
+                  <div class="gauge-value">{{ overtime_card.risk_percent }}%</div>
+                </div>
+                <p>Risk Level (风险等级): <strong>{{ overtime_card.risk_label }}</strong></p>
+              </div>
+              <div class="detail-list">
+                {% for label, value in overtime_card.details %}
+                <div class="detail-row">
+                  <span>{{ label }}</span>
+                  <strong>{{ value }}</strong>
+                </div>
+                {% endfor %}
+              </div>
+            </article>
+          </section>
+
+          <section class="content-row secondary-row">
+            <article class="panel board-card">
+              <div class="card-head">
+                <h3>Active Workstations (当前工位)</h3>
+              </div>
+              <div class="station-grid">
+                {% for station in workstation_cards %}
+                <div class="station-card">
+                  <strong>{{ station.title }}</strong>
+                  <p>{{ station.status }}</p>
+                  <small>{{ station.detail }}</small>
+                </div>
+                {% endfor %}
+              </div>
+            </article>
+
+            <article class="panel board-card">
+              <div class="card-head">
+                <h3>Performance Analysis (性能分析)</h3>
+              </div>
+              <div class="bar-strip" aria-hidden="true">
+                <span style="height: 22%"></span>
+                <span style="height: 40%"></span>
+                <span style="height: 63%"></span>
+                <span style="height: 88%"></span>
+              </div>
+              <table class="compact-table">
+                <thead>
+                  <tr>
+                    <th>Sample Size (样本量)</th>
+                    <th>Heap Queue (堆队列)</th>
+                    <th>Second Queue (第二队列)</th>
+                    <th>Total Simulation (总仿真)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in performance_rows %}
+                  <tr>
+                    <td>{{ row.size }}</td>
+                    <td>{{ row.heap }}</td>
+                    <td>{{ row.second }}</td>
+                    <td>{{ row.simulation }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </article>
+          </section>
+
+          <section class="content-row tertiary-row">
+            <article class="panel board-card full-span">
+              <div class="card-head">
+                <h3>Content Slots (内容预留位)</h3>
+              </div>
+              <div class="slot-grid">
+                {% for slot in content_slots %}
+                <div class="slot-card">
+                  <strong>{{ slot.title }}</strong>
+                  <p class="slot-path">{{ slot.path }}</p>
+                  <p>{{ slot.hint }}</p>
+                </div>
+                {% endfor %}
+              </div>
+            </article>
+          </section>
+        </main>
+
+        <aside class="structure-rail">
+          <section class="panel structure-panel">
+            <div class="panel-heading">
+              <h2>Project Structure (项目结构参考)</h2>
+            </div>
+            <div class="structure-header">
+              <span>Description (说明)</span>
+            </div>
+            <div class="structure-list">
+              {% for path, desc in project_map %}
+              <div class="structure-row">
+                <div class="structure-path">
+                  <span class="structure-icon {{ 'folder' if path.endswith('/') else 'file' }}"></span>
+                  <code>{{ path }}</code>
+                </div>
+                <span>{{ desc }}</span>
+              </div>
+              {% endfor %}
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="page-footer">
+        <span>{{ app_title }} v0.1.0</span>
+        <span>Built with Flask · Python · Student Project (学生项目)</span>
+      </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+  </body>
+</html>

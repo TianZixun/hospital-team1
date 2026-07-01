@@ -4,6 +4,8 @@ def main() -> None:
     print("Assignment notes: docs/index.md")
     print("Future placement rules: docs/development_rules.md")
     print("Quick smoke test: python test.py")
+    print("Flask dashboard: python scripts/launch_gui.py")
+    print("Default dashboard URL: http://127.0.0.1:5055")
 
 
 if __name__ == "__main__":

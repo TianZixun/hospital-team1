@@ -1,5 +1,8 @@
+from hospital_team1.visualization import launch_gui
+
+
 def main() -> None:
-    print("TODO: launch the visualization GUI.")
+    launch_gui()
 
 
 if __name__ == "__main__":
