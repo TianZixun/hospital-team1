@@ -15,7 +15,7 @@ class TestDashboardApp(unittest.TestCase):
         body = response.get_data(as_text=True)
         self.assertIn("Hospital Triage Scheduler", body)
         self.assertIn("Waiting Room (候诊区)", body)
-        self.assertIn("Project Structure (项目结构参考)", body)
+        self.assertIn("Project Structure (项目结构)", body)
 
 
 if __name__ == "__main__":

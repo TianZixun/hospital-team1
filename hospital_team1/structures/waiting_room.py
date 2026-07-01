@@ -30,7 +30,7 @@ class WaitingRoom:
         previous: PatientNode | None = None
         current = self.head
         while current is not None:
-            if current.patient.patient_id == patient_id:
+            if str(current.patient.patient_id) == str(patient_id):
                 if previous is None:
                     self.head = current.next_node
                 else:
@@ -45,7 +45,7 @@ class WaitingRoom:
 
     def find_patient(self, patient_id: str) -> Patient | None:
         for patient in self.iter_patients():
-            if patient.patient_id == patient_id:
+            if str(patient.patient_id) == str(patient_id):
                 return patient
         return None
 
@@ -57,6 +57,21 @@ class WaitingRoom:
 
     def to_list(self) -> list[Patient]:
         return list(self.iter_patients())
+
+    def get_all_waiting_patients(self) -> list[Patient]:
+        return self.to_list()
+
+    def find_patient_by_id(self, patient_id: str | int) -> Patient | None:
+        return self.find_patient(str(patient_id))
+
+    def remove_patient_by_id(self, patient_id: str | int) -> Patient | None:
+        return self.remove_patient(str(patient_id))
+
+    def get_size(self) -> int:
+        return self._size
+
+    def is_empty(self) -> bool:
+        return self._size == 0
 
     def __len__(self) -> int:
         return self._size

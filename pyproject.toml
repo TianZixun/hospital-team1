@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Hospital patient triage scheduling system scaffold."
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["flask>=3.0,<4"]
+dependencies = ["flask>=3.0,<4", "waitress>=3.0,<4"]
 
 [project.optional-dependencies]
 dev = ["coverage[toml]>=7.6"]

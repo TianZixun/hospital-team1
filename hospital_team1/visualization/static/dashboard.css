@@ -39,6 +39,10 @@ button {
   font-family: inherit;
 }
 
+a {
+  color: inherit;
+}
+
 .dashboard-page {
   max-width: 1540px;
   margin: 0 auto;
@@ -159,6 +163,16 @@ button {
   margin-bottom: 12px;
 }
 
+.card-head-stack {
+  align-items: center;
+}
+
+.link-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .panel-heading h2,
 .card-head h3 {
   margin: 0;
@@ -255,6 +269,24 @@ button {
   gap: 10px;
 }
 
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.button-link.subtle {
+  border: 1px solid #9dc0f8;
+  background: #f7faff;
+  color: var(--blue);
+}
+
 .control-button {
   border: none;
   border-radius: 12px;
@@ -268,6 +300,10 @@ button {
 .control-button:hover {
   transform: translateY(-1px);
   filter: brightness(1.02);
+}
+
+.control-button.pressed {
+  transform: scale(0.98);
 }
 
 .control-button.success {
@@ -361,6 +397,11 @@ button {
 .metric-icon.warning {
   color: #836000;
   background: #fff3dd;
+}
+
+.metric-icon.high {
+  color: var(--red);
+  background: var(--red-soft);
 }
 
 .metric-icon.neutral {
@@ -806,6 +847,21 @@ button {
   flex: 1;
   border-radius: 12px 12px 4px 4px;
   background: linear-gradient(180deg, #74adff 0%, #2f74ea 100%);
+}
+
+.chart-frame {
+  margin-bottom: 14px;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: #fbfdff;
+}
+
+.performance-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
 
 .slot-grid {

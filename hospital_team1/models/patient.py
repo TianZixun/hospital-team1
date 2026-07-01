@@ -8,7 +8,7 @@ from .triage import TriageLevel
 
 @dataclass(order=False)
 class Patient:
-    patient_id: str
+    patient_id: str | int
     name: str
     age: int
     triage_level: TriageLevel
@@ -53,3 +53,20 @@ class Patient:
             other.triage_level.value,
             other.arrival_time,
         )
+
+    @property
+    def estimated_treatment_duration(self) -> int:
+        return self.estimated_treatment_minutes
+
+    def calculate_wait_minutes(self, current_time: datetime) -> float:
+        delta = current_time - self.arrival_time
+        return delta.total_seconds() / 60
+
+    def get_max_allowed_wait(self) -> int:
+        limits = {
+            TriageLevel.CRITICAL: 15,
+            TriageLevel.URGENT: 30,
+            TriageLevel.SEMI_URGENT: 60,
+            TriageLevel.NON_URGENT: 120,
+        }
+        return limits[self.triage_level]

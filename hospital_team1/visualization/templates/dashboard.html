@@ -30,16 +30,22 @@
             </div>
 
             <section class="sidebar-section">
-              <p class="section-label">1. Data (数据)</p>
+              <p class="section-label">1. Dataset (数据集)</p>
               <div class="upload-card">
-                <div class="upload-icon">↥</div>
-                <strong>Import CSV (导入 CSV)</strong>
-                <p>Click to upload or drag and drop (点击或拖拽文件)</p>
+                <div class="upload-icon">-></div>
+                <strong>Patient CSV Loaded (患者 CSV 已加载)</strong>
+                <p>Real patient data is loaded from your zip package (已加载压缩包中的真实患者数据).</p>
               </div>
               <div class="dataset-meta">
-                <p>Last dataset (最近数据集): {{ dataset_overview.file_name }}</p>
-                <p>Rows (行数): {{ dataset_overview.rows }}</p>
-                <p>Generated (生成时间): {{ dataset_overview.generated_at }}</p>
+                <p>Latest File (当前文件): {{ dataset_overview.file_name }}</p>
+                <p>Rows (总行数): {{ dataset_overview.rows }}</p>
+                <p>Updated At (更新时间): {{ dataset_overview.generated_at }}</p>
+              </div>
+              <div class="link-actions">
+                <a class="button-link subtle" href="{{ dataset_download_url }}" target="_blank" rel="noreferrer">Open Dataset (打开数据集)</a>
+                {% if requirements_url %}
+                <a class="button-link subtle" href="{{ requirements_url }}" target="_blank" rel="noreferrer">Open Brief (打开要求)</a>
+                {% endif %}
               </div>
             </section>
 
@@ -56,7 +62,7 @@
             </section>
 
             <section class="sidebar-section">
-              <p class="section-label">3. Simulation Control (仿真控制)</p>
+              <p class="section-label">3. Quick Actions (快捷操作)</p>
               <div class="button-stack">
                 {% for button in control_buttons %}
                 <button type="button" class="control-button {{ button.tone }}">{{ button.label }}</button>
@@ -70,7 +76,7 @@
               <h2>Simulation Time (仿真时间)</h2>
             </div>
             <strong class="runtime">{{ system_overview.runtime }}</strong>
-            <p>Simulated Patients (模拟患者): {{ system_overview.simulated_patients }}</p>
+            <p>Simulated Patients (仿真总人数): {{ system_overview.simulated_patients }}</p>
             <div class="progress-track">
               <span style="width: {{ system_overview.utilization_percent }}%"></span>
             </div>
@@ -79,7 +85,7 @@
               <strong>{{ system_overview.status }}</strong>
             </div>
             <div class="status-row">
-              <span>Utilization (利用率):</span>
+              <span>Compliance Rate (合规率):</span>
               <strong>{{ system_overview.utilization_label }}</strong>
             </div>
           </section>
@@ -117,19 +123,19 @@
                   <strong>ID: {{ patient.patient_id }}</strong>
                   <p>Name (姓名): {{ patient.name }}</p>
                   <p>Priority (优先级): {{ patient.priority }}</p>
-                  <p>Arrival (到达): {{ patient.arrival }}</p>
-                  <p>Wait (等待): {{ patient.wait }}</p>
+                  <p>Arrival (到达时间): {{ patient.arrival }}</p>
+                  <p>Wait (等待时间): {{ patient.wait }}</p>
                 </div>
                 {% if not loop.last %}
-                <div class="flow-arrow">→</div>
+                <div class="flow-arrow">&rarr;</div>
                 {% else %}
-                <div class="flow-null">NULL (空)</div>
+                <div class="flow-null">NULL (结束)</div>
                 {% endif %}
                 {% endfor %}
               </div>
               <div class="card-foot">
-                <span>Total in Waiting Room (候诊人数): 24</span>
-                <span>Last Updated (最后更新): 10:24:18</span>
+                <span>Total in Waiting Room (候诊人数): {{ waiting_room_patients|length }}</span>
+                <span>Snapshot Time (快照时间): {{ system_overview.clock }}</span>
               </div>
             </article>
 
@@ -137,7 +143,7 @@
               <div class="card-head">
                 <div>
                   <h3>Priority Queue (优先队列) - Heap (堆结构)</h3>
-                  <p class="helper-text">Replace with live heap output from the real queue implementation later.</p>
+                  <p class="helper-text">Built from the live queue instead of placeholder nodes (来自真实队列而不是占位数据).</p>
                 </div>
               </div>
               <div class="heap-tree">
@@ -153,8 +159,8 @@
                 {% endfor %}
               </div>
               <div class="card-foot">
-                <span>Heap Size (堆大小): 24</span>
-                <span>Last Updated (最后更新): 10:24:18</span>
+                <span>Heap Levels (堆层数): {{ heap_levels|length }}</span>
+                <span>Real Queue Source (真实来源): heap_priority_queue.py</span>
               </div>
             </article>
           </section>
@@ -165,18 +171,12 @@
                 <h3>Anomaly Detection (异常检测)</h3>
               </div>
               <div class="risk-grid">
-                <div class="risk-pill high">
-                  <strong>3</strong>
-                  <span>High Risk (高风险)</span>
+                {% for bucket in anomaly_breakdown %}
+                <div class="risk-pill {{ bucket.tone }}">
+                  <strong>{{ bucket.count }}</strong>
+                  <span>{{ bucket.label }}</span>
                 </div>
-                <div class="risk-pill medium">
-                  <strong>7</strong>
-                  <span>Medium Risk (中风险)</span>
-                </div>
-                <div class="risk-pill low">
-                  <strong>0</strong>
-                  <span>Low Risk (低风险)</span>
-                </div>
+                {% endfor %}
               </div>
               <div class="list-card">
                 {% for item in recent_anomalies %}
@@ -191,13 +191,13 @@
 
             <article class="panel info-card">
               <div class="card-head">
-                <h3>Predicted Wait Times (预测等待时间)</h3>
+                <h3>Predicted Wait Times (预计等待时间)</h3>
               </div>
               <table class="compact-table">
                 <thead>
                   <tr>
                     <th>Priority (优先级)</th>
-                    <th>Predicted Wait (预测等待)</th>
+                    <th>Predicted Wait (预计等待)</th>
                     <th>Trend (趋势)</th>
                   </tr>
                 </thead>
@@ -216,16 +216,16 @@
                   <line x1="0" y1="95" x2="320" y2="95"></line>
                   <line x1="0" y1="60" x2="320" y2="60"></line>
                   <line x1="0" y1="25" x2="320" y2="25"></line>
-                  <polyline class="high-line" points="0,40 25,34 50,38 75,32 100,36 125,28 150,31 175,27 200,35 225,29 250,33 275,26 320,35"></polyline>
-                  <polyline class="medium-line" points="0,62 25,58 50,60 75,57 100,63 125,56 150,59 175,54 200,58 225,53 250,56 275,51 320,55"></polyline>
-                  <polyline class="low-line" points="0,82 25,80 50,81 75,78 100,82 125,79 150,81 175,76 200,80 225,74 250,79 275,73 320,77"></polyline>
+                  <polyline class="high-line" points="0,44 25,42 50,40 75,38 100,37 125,34 150,31 175,28 200,26 225,24 250,23 275,22 320,20"></polyline>
+                  <polyline class="medium-line" points="0,64 25,63 50,61 75,60 100,58 125,56 150,54 175,53 200,52 225,51 250,50 275,49 320,48"></polyline>
+                  <polyline class="low-line" points="0,86 25,85 50,84 75,83 100,81 125,80 150,79 175,78 200,77 225,76 250,75 275,74 320,73"></polyline>
                 </svg>
               </div>
             </article>
 
             <article class="panel info-card">
               <div class="card-head">
-                <h3>Overtime Risk (加班风险)</h3>
+                <h3>Overtime Risk (超时风险)</h3>
               </div>
               <div class="gauge-wrap">
                 <div class="gauge" style="--gauge-value: {{ overtime_card.risk_percent }};">
@@ -262,22 +262,36 @@
             </article>
 
             <article class="panel board-card">
-              <div class="card-head">
-                <h3>Performance Analysis (性能分析)</h3>
+              <div class="card-head card-head-stack">
+                <div>
+                  <h3>Performance Analysis (性能分析)</h3>
+                  <p class="helper-text">Uses the real benchmark CSV and chart from your project package (读取压缩包中的真实性能结果).</p>
+                </div>
+                <div class="link-actions">
+                  {% if performance_csv_url %}
+                  <a class="button-link subtle" href="{{ performance_csv_url }}" target="_blank" rel="noreferrer">Open CSV (打开结果表)</a>
+                  {% endif %}
+                </div>
               </div>
+              {% if performance_chart_url %}
+              <div class="chart-frame">
+                <img class="performance-chart" src="{{ performance_chart_url }}" alt="Performance comparison chart">
+              </div>
+              {% else %}
               <div class="bar-strip" aria-hidden="true">
                 <span style="height: 22%"></span>
                 <span style="height: 40%"></span>
                 <span style="height: 63%"></span>
                 <span style="height: 88%"></span>
               </div>
+              {% endif %}
               <table class="compact-table">
                 <thead>
                   <tr>
                     <th>Sample Size (样本量)</th>
                     <th>Heap Queue (堆队列)</th>
                     <th>Second Queue (第二队列)</th>
-                    <th>Total Simulation (总仿真)</th>
+                    <th>Total Benchmark (总耗时)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -297,7 +311,7 @@
           <section class="content-row tertiary-row">
             <article class="panel board-card full-span">
               <div class="card-head">
-                <h3>Content Slots (内容预留位)</h3>
+                <h3>Content Slots (内容接入位置)</h3>
               </div>
               <div class="slot-grid">
                 {% for slot in content_slots %}
@@ -315,7 +329,7 @@
         <aside class="structure-rail">
           <section class="panel structure-panel">
             <div class="panel-heading">
-              <h2>Project Structure (项目结构参考)</h2>
+              <h2>Project Structure (项目结构)</h2>
             </div>
             <div class="structure-header">
               <span>Description (说明)</span>
@@ -336,8 +350,8 @@
       </div>
 
       <footer class="page-footer">
-        <span>{{ app_title }} v0.1.0</span>
-        <span>Built with Flask · Python · Student Project (学生项目)</span>
+        <span>{{ app_title }} v0.3.0</span>
+        <span>Flask + Python + Real CSV / Analysis / Queue Data (真实 CSV / 分析 / 队列数据)</span>
       </footer>
     </div>
 
