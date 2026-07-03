@@ -4,10 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ app_title }}</title>
+    <link rel="icon" href="{{ url_for('favicon') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
   </head>
   <body>
-    <div class="dashboard-page">
+    <div
+      class="dashboard-page"
+      data-clock-iso="{{ system_overview.clock_iso }}"
+      data-shift-start-iso="{{ system_overview.shift_start_iso }}"
+      data-current-offset="{{ current_snapshot_offset }}"
+      data-next-offset="{{ next_snapshot_offset }}"
+      data-max-offset="{{ max_snapshot_offset }}"
+      data-refresh-step="{{ refresh_step_minutes }}"
+      data-run-simulation-url="{{ run_simulation_url }}"
+      data-dataset-url="{{ dataset_download_url }}"
+    >
       <header class="topbar panel">
         <div class="brand-block">
           <div class="brand-mark">+</div>
@@ -17,7 +28,7 @@
           </div>
         </div>
         <div class="topbar-meta">
-          <span class="meta-chip">{{ system_overview.clock }}</span>
+          <span class="meta-chip" id="live-clock" data-clock-role="clock">{{ system_overview.clock }}</span>
           <span class="meta-chip success">{{ system_overview.status }}</span>
         </div>
       </header>
@@ -65,7 +76,13 @@
               <p class="section-label">3. Quick Actions (快捷操作)</p>
               <div class="button-stack">
                 {% for button in control_buttons %}
-                <button type="button" class="control-button {{ button.tone }}">{{ button.label }}</button>
+                <button
+                  type="button"
+                  class="control-button {{ button.tone }}"
+                  data-action="{{ button.action }}"
+                >
+                  {{ button.label }}
+                </button>
                 {% endfor %}
               </div>
             </section>
@@ -75,7 +92,7 @@
             <div class="panel-heading">
               <h2>Simulation Time (仿真时间)</h2>
             </div>
-            <strong class="runtime">{{ system_overview.runtime }}</strong>
+            <strong class="runtime" id="simulation-runtime">{{ system_overview.runtime }}</strong>
             <p>Simulated Patients (仿真总人数): {{ system_overview.simulated_patients }}</p>
             <div class="progress-track">
               <span style="width: {{ system_overview.utilization_percent }}%"></span>
@@ -106,7 +123,7 @@
           </section>
 
           <section class="content-row primary-row">
-            <article class="panel board-card">
+            <article class="panel board-card" id="queue-inspection">
               <div class="card-head">
                 <div>
                   <h3>Waiting Room (候诊区) - Linked List (链表结构)</h3>
@@ -125,6 +142,7 @@
                   <p>Priority (优先级): {{ patient.priority }}</p>
                   <p>Arrival (到达时间): {{ patient.arrival }}</p>
                   <p>Wait (等待时间): {{ patient.wait }}</p>
+                  <p>Status (状态): {{ patient.status }}</p>
                 </div>
                 {% if not loop.last %}
                 <div class="flow-arrow">&rarr;</div>
@@ -135,7 +153,7 @@
               </div>
               <div class="card-foot">
                 <span>Total in Waiting Room (候诊人数): {{ waiting_room_patients|length }}</span>
-                <span>Snapshot Time (快照时间): {{ system_overview.clock }}</span>
+                <span>Snapshot Time (快照时间): <span data-clock-role="clock">{{ system_overview.clock }}</span></span>
               </div>
             </article>
 
@@ -211,15 +229,25 @@
                   {% endfor %}
                 </tbody>
               </table>
+              <div class="wait-trend-legend">
+                {% for line in wait_trend_lines %}
+                <span class="wait-trend-item {{ line.tone }}">{{ line.label }}</span>
+                {% endfor %}
+              </div>
               <div class="sparkline-card" aria-hidden="true">
                 <svg viewBox="0 0 320 120" preserveAspectRatio="none">
                   <line x1="0" y1="95" x2="320" y2="95"></line>
                   <line x1="0" y1="60" x2="320" y2="60"></line>
                   <line x1="0" y1="25" x2="320" y2="25"></line>
-                  <polyline class="high-line" points="0,44 25,42 50,40 75,38 100,37 125,34 150,31 175,28 200,26 225,24 250,23 275,22 320,20"></polyline>
-                  <polyline class="medium-line" points="0,64 25,63 50,61 75,60 100,58 125,56 150,54 175,53 200,52 225,51 250,50 275,49 320,48"></polyline>
-                  <polyline class="low-line" points="0,86 25,85 50,84 75,83 100,81 125,80 150,79 175,78 200,77 225,76 250,75 275,74 320,73"></polyline>
+                  {% for line in wait_trend_lines %}
+                  <polyline class="trend-line {{ line.tone }}" points="{{ line.points }}"></polyline>
+                  {% endfor %}
                 </svg>
+              </div>
+              <div class="trend-label-row">
+                {% for label in wait_trend_labels %}
+                <span>{{ label }}</span>
+                {% endfor %}
               </div>
             </article>
 
@@ -261,7 +289,7 @@
               </div>
             </article>
 
-            <article class="panel board-card">
+            <article class="panel board-card" id="performance-analysis">
               <div class="card-head card-head-stack">
                 <div>
                   <h3>Performance Analysis (性能分析)</h3>
@@ -350,11 +378,12 @@
       </div>
 
       <footer class="page-footer">
-        <span>{{ app_title }} v0.3.0</span>
+        <span>{{ app_title }} v0.4.0</span>
         <span>Flask + Python + Real CSV / Analysis / Queue Data (真实 CSV / 分析 / 队列数据)</span>
       </footer>
     </div>
 
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
     <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
   </body>
 </html>

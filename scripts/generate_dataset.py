@@ -1,6 +1,7 @@
 from datetime import datetime
 from pathlib import Path
 
+from _bootstrap import PROJECT_ROOT  # noqa: F401
 from hospital_team1.data.dataset_generator import (
     DatasetConfig,
     export_patients_to_csv,

@@ -2,10 +2,10 @@ from hospital_team1.models import TriageLevel
 
 
 SERVICE_LIMIT_MINUTES = {
-    TriageLevel.CRITICAL: 15,
-    TriageLevel.URGENT: 30,
-    TriageLevel.SEMI_URGENT: 60,
-    TriageLevel.NON_URGENT: 120,
+    TriageLevel.CRITICAL: 0,
+    TriageLevel.URGENT: 20,
+    TriageLevel.SEMI_URGENT: 35,
+    TriageLevel.NON_URGENT: 60,
 }
 
 

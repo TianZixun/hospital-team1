@@ -37,6 +37,24 @@ class TestWaitingRoom(unittest.TestCase):
         self.assertEqual(len(waiting_room), 0)
         self.assertIsNone(waiting_room.find_patient("P001"))
 
+    def test_critical_patient_is_inserted_at_front(self) -> None:
+        waiting_room = WaitingRoom()
+        non_urgent = make_patient("P001")
+        critical = Patient(
+            patient_id="P999",
+            name="Critical-Patient",
+            age=35,
+            triage_level=TriageLevel.CRITICAL,
+            arrival_time=datetime(2026, 6, 30, 8, 5),
+            estimated_treatment_minutes=30,
+        )
+
+        waiting_room.add_patient(non_urgent)
+        waiting_room.add_patient(critical)
+
+        ordered_ids = [patient.patient_id for patient in waiting_room.get_all_waiting_patients()]
+        self.assertEqual(ordered_ids[0], "P999")
+
 
 if __name__ == "__main__":
     unittest.main()

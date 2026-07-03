@@ -3,6 +3,10 @@ from __future__ import annotations
 from datetime import datetime
 
 from hospital_team1.models import Patient, TriageLevel
+from hospital_team1.simulation.shift_simulation import (
+    DEFAULT_WORKSTATION_COUNT,
+    project_waiting_starts,
+)
 from hospital_team1.structures import WaitingRoom
 
 
@@ -12,6 +16,13 @@ TRIAGE_ORDER = [
     TriageLevel.SEMI_URGENT,
     TriageLevel.NON_URGENT,
 ]
+
+MINIMUM_TRIAGE_WAIT_ESTIMATES = {
+    TriageLevel.CRITICAL: 0.0,
+    TriageLevel.URGENT: 8.0,
+    TriageLevel.SEMI_URGENT: 15.0,
+    TriageLevel.NON_URGENT: 25.0,
+}
 
 
 def analyze_avg_wait_by_triage(
@@ -94,27 +105,56 @@ def estimate_wait_for_new_patient(
     waiting_room: WaitingRoom,
     current_time: datetime,
     slot_interval: int = 20,
+    station_available_times: list[datetime] | None = None,
+    workstation_count: int = DEFAULT_WORKSTATION_COUNT,
 ) -> dict:
     active_patients = [
         patient
         for patient in waiting_room.get_all_waiting_patients()
         if patient.arrival_time <= current_time
     ]
-    active_patients.sort()
 
     estimates: dict[TriageLevel | str, dict | datetime | int] = {}
     for level in TRIAGE_ORDER:
+        if level == TriageLevel.CRITICAL:
+            estimates[level] = {
+                "patients_ahead": 0,
+                "estimated_wait_minutes": 0.0,
+            }
+            continue
+
+        preview_patient = Patient(
+            patient_id=f"preview-{level.name.lower()}",
+            name="Preview",
+            age=0,
+            triage_level=level,
+            arrival_time=current_time,
+            estimated_treatment_minutes=slot_interval,
+        )
+        projected_queue = list(active_patients) + [preview_patient]
+        projected_queue.sort()
         patients_ahead = 0
-        for patient in active_patients:
-            if patient.triage_level.value < level.value:
-                patients_ahead += 1
-            elif patient.triage_level.value == level.value:
-                patients_ahead += 1
-            else:
+        for patient in projected_queue:
+            if patient is preview_patient:
                 break
+            patients_ahead += 1
+
+        projected_starts = project_waiting_starts(
+            projected_queue,
+            current_time=current_time,
+            station_available_times=station_available_times,
+            workstation_count=workstation_count,
+        )
+        start_time = projected_starts[str(preview_patient.patient_id)]
+        projected_wait = max(
+            (start_time - current_time).total_seconds() / 60, 0.0
+        )
         estimates[level] = {
             "patients_ahead": patients_ahead,
-            "estimated_wait_minutes": float(patients_ahead * slot_interval),
+            "estimated_wait_minutes": max(
+                projected_wait,
+                MINIMUM_TRIAGE_WAIT_ESTIMATES[level],
+            ),
         }
 
     estimates["total_in_queue"] = len(active_patients)
@@ -127,11 +167,17 @@ def run_waiting_room_analytics(
     waiting_room: WaitingRoom,
     current_time: datetime,
     slot_interval: int = 20,
+    station_available_times: list[datetime] | None = None,
+    workstation_count: int = DEFAULT_WORKSTATION_COUNT,
 ) -> dict[str, object]:
     return {
         "avg_wait": analyze_avg_wait_by_triage(waiting_room, current_time),
         "inversions": detect_priority_inversions(waiting_room, current_time),
         "estimates": estimate_wait_for_new_patient(
-            waiting_room, current_time, slot_interval
+            waiting_room,
+            current_time,
+            slot_interval,
+            station_available_times=station_available_times,
+            workstation_count=workstation_count,
         ),
     }

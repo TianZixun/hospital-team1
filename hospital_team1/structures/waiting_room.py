@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Iterator
 
-from hospital_team1.models import Patient
+from hospital_team1.models import Patient, TriageLevel
 
 from .linked_list import PatientNode
 
@@ -20,6 +20,9 @@ class WaitingRoom:
         if self.head is None:
             self.head = node
             self.tail = node
+        elif patient.triage_level == TriageLevel.CRITICAL:
+            node.next_node = self.head
+            self.head = node
         else:
             assert self.tail is not None
             self.tail.next_node = node

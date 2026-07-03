@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 from hospital_team1.analysis.performance import benchmark_priority_queues
@@ -9,7 +9,11 @@ from hospital_team1.analysis.waiting_room_analytics import run_waiting_room_anal
 from hospital_team1.data.csv_loader import load_patients_from_csv
 from hospital_team1.models import TriageLevel
 from hospital_team1.simulation.report import build_shift_report
-from hospital_team1.simulation.shift_simulation import run_shift_simulation
+from hospital_team1.simulation.shift_simulation import (
+    DEFAULT_WORKSTATION_COUNT,
+    build_queue_snapshot,
+    run_shift_simulation,
+)
 from hospital_team1.structures import WaitingRoom
 
 
@@ -18,7 +22,10 @@ DATASET_PATH = PROJECT_ROOT / "datasets" / "patients_dataset.csv"
 PERFORMANCE_CSV_PATH = PROJECT_ROOT / "performance_results.csv"
 PERFORMANCE_IMAGE_PATH = PROJECT_ROOT / "performance_comparison.png"
 REQUIREMENTS_PATH = PROJECT_ROOT / "require.rtf"
-SNAPSHOT_TIME = datetime(2026, 6, 30, 10, 0, 0)
+SHIFT_START_TIME = datetime(2026, 6, 30, 8, 0, 0)
+BASE_SNAPSHOT_TIME = datetime(2026, 6, 30, 10, 0, 0)
+SNAPSHOT_STEP_MINUTES = 20
+QUEUE_VIEW_LIMIT = 10
 
 TRIAGE_LABELS = {
     TriageLevel.CRITICAL: "Critical (危急)",
@@ -28,10 +35,10 @@ TRIAGE_LABELS = {
 }
 
 TRIAGE_TONES = {
-    TriageLevel.CRITICAL: "high",
-    TriageLevel.URGENT: "high",
-    TriageLevel.SEMI_URGENT: "medium",
-    TriageLevel.NON_URGENT: "low",
+    TriageLevel.CRITICAL: "critical",
+    TriageLevel.URGENT: "urgent",
+    TriageLevel.SEMI_URGENT: "semi",
+    TriageLevel.NON_URGENT: "non",
 }
 
 
@@ -54,21 +61,19 @@ def _build_waiting_room(patients: list) -> WaitingRoom:
 
 
 def _build_heap_levels(patients: list) -> list[list[dict[str, str]]]:
-    ordered = sorted(patients)[:7]
-    levels = [ordered[:1], ordered[1:3], ordered[3:7]]
-    built_levels: list[list[dict[str, str]]] = []
-    for level in levels:
-        built_levels.append(
-            [
-                {
-                    "label": _patient_code(patient.patient_id),
-                    "priority": TRIAGE_LABELS[patient.triage_level],
-                    "tone": TRIAGE_TONES[patient.triage_level],
-                }
-                for patient in level
-            ]
-        )
-    return built_levels
+    ordered = list(patients)[:QUEUE_VIEW_LIMIT]
+    levels = [ordered[:1], ordered[1:3], ordered[3:7], ordered[7:10]]
+    return [
+        [
+            {
+                "label": _patient_code(patient.patient_id),
+                "priority": TRIAGE_LABELS[patient.triage_level],
+                "tone": TRIAGE_TONES[patient.triage_level],
+            }
+            for patient in level
+        ]
+        for level in levels
+    ]
 
 
 def _build_anomaly_breakdown(inversions: list[dict[str, object]]) -> list[dict[str, str]]:
@@ -140,40 +145,180 @@ def _estimate_trend(wait_minutes: float) -> str:
     return "Stable (稳定)"
 
 
-def get_dashboard_context() -> dict:
+def _resolve_snapshot_time(offset_minutes: int) -> datetime:
+    return BASE_SNAPSHOT_TIME + timedelta(minutes=max(0, offset_minutes))
+
+
+def _max_snapshot_offset(patients: list) -> int:
+    if not patients:
+        return 0
+    latest_arrival = max(patient.arrival_time for patient in patients)
+    minutes = max(0, int((latest_arrival - BASE_SNAPSHOT_TIME).total_seconds() // 60))
+    rounded = ((minutes + SNAPSHOT_STEP_MINUTES - 1) // SNAPSHOT_STEP_MINUTES) * SNAPSHOT_STEP_MINUTES
+    return max(rounded, SNAPSHOT_STEP_MINUTES * 3)
+
+
+def _build_wait_trend_chart(
+    patients: list,
+    snapshot_offset_minutes: int,
+    history_points: int = 7,
+) -> tuple[list[dict[str, str]], list[str]]:
+    end_offset = max(0, snapshot_offset_minutes)
+    start_offset = max(0, end_offset - SNAPSHOT_STEP_MINUTES * (history_points - 1))
+    offsets = list(range(start_offset, end_offset + SNAPSHOT_STEP_MINUTES, SNAPSHOT_STEP_MINUTES))
+    if len(offsets) == 1:
+        offsets = [0, SNAPSHOT_STEP_MINUTES]
+
+    history = {level: [] for level in TriageLevel}
+    labels: list[str] = []
+    for offset in offsets:
+        snapshot_time = _resolve_snapshot_time(offset)
+        snapshot = build_queue_snapshot(
+            patients,
+            snapshot_time=snapshot_time,
+            workstation_count=DEFAULT_WORKSTATION_COUNT,
+        )
+        active_queue_patients = (
+            list(snapshot["waiting_patients"]) + list(snapshot["in_service_patients"])
+        )
+        waiting_room = _build_waiting_room(active_queue_patients)
+        analytics = run_waiting_room_analytics(
+            waiting_room,
+            snapshot_time,
+            station_available_times=snapshot["station_available_times"],
+            workstation_count=DEFAULT_WORKSTATION_COUNT,
+        )
+        estimates = analytics["estimates"]
+        labels.append(snapshot_time.strftime("%H:%M"))
+        for level in TriageLevel:
+            history[level].append(float(estimates[level]["estimated_wait_minutes"]))
+
+    width = 320
+    height = 120
+    x_padding = 14
+    y_padding = 14
+    usable_width = width - x_padding * 2
+    usable_height = height - y_padding * 2
+    max_value = max(max(values) for values in history.values()) or 1.0
+
+    def build_points(values: list[float]) -> str:
+        if len(values) == 1:
+            values = values * 2
+        points = []
+        for index, value in enumerate(values):
+            x = x_padding + (usable_width * index / max(len(values) - 1, 1))
+            y = y_padding + (usable_height * (1 - value / max_value))
+            points.append(f"{x:.1f},{y:.1f}")
+        return " ".join(points)
+
+    lines = [
+        {
+            "label": TRIAGE_LABELS[TriageLevel.CRITICAL],
+            "tone": "critical",
+            "points": build_points(history[TriageLevel.CRITICAL]),
+        },
+        {
+            "label": TRIAGE_LABELS[TriageLevel.URGENT],
+            "tone": "urgent",
+            "points": build_points(history[TriageLevel.URGENT]),
+        },
+        {
+            "label": TRIAGE_LABELS[TriageLevel.SEMI_URGENT],
+            "tone": "semi",
+            "points": build_points(history[TriageLevel.SEMI_URGENT]),
+        },
+        {
+            "label": TRIAGE_LABELS[TriageLevel.NON_URGENT],
+            "tone": "non",
+            "points": build_points(history[TriageLevel.NON_URGENT]),
+        },
+    ]
+    return lines, labels
+
+
+def get_dashboard_context(snapshot_offset_minutes: int = 0) -> dict:
     patients = load_patients_from_csv(DATASET_PATH)
-    current_time = SNAPSHOT_TIME
-    active_patients = [patient for patient in patients if patient.arrival_time <= current_time]
+    snapshot_offset_minutes = max(0, snapshot_offset_minutes)
+    current_time = _resolve_snapshot_time(snapshot_offset_minutes)
+    snapshot = build_queue_snapshot(
+        patients,
+        snapshot_time=current_time,
+        workstation_count=DEFAULT_WORKSTATION_COUNT,
+    )
+    waiting_patients = list(snapshot["waiting_patients"])
+    in_service_patients = list(snapshot["in_service_patients"])
+    active_patients = (
+        waiting_patients + in_service_patients
+    )
     waiting_room = _build_waiting_room(active_patients)
 
-    simulation_result = run_shift_simulation(patients, slot_interval=20)
+    simulation_result = run_shift_simulation(
+        patients,
+        slot_interval=20,
+        workstation_count=DEFAULT_WORKSTATION_COUNT,
+    )
     shift_report = build_shift_report(simulation_result)
-    waiting_metrics = run_waiting_room_analytics(waiting_room, current_time)
+    waiting_metrics = run_waiting_room_analytics(
+        waiting_room,
+        current_time,
+        station_available_times=snapshot["station_available_times"],
+        workstation_count=DEFAULT_WORKSTATION_COUNT,
+    )
     timeout_summary = summarize_timeout_risk(current_time)
     performance_rows, performance_artifact = _load_performance_rows()
+    wait_trend_lines, wait_trend_labels = _build_wait_trend_chart(
+        patients,
+        snapshot_offset_minutes=snapshot_offset_minutes,
+    )
 
     average_wait = _weighted_average_wait(waiting_metrics["avg_wait"])
     threshold_violations = _threshold_violations(waiting_metrics["avg_wait"])
     inversions = waiting_metrics["inversions"]
     estimates = waiting_metrics["estimates"]
 
+    active_patient_ids = {str(patient.patient_id) for patient in active_patients}
+    waiting_patient_ids = {str(patient.patient_id) for patient in waiting_patients}
+    in_service_patient_ids = {str(patient.patient_id) for patient in in_service_patients}
+    upcoming_patients = [
+        patient
+        for patient in sorted(patients, key=lambda item: item.arrival_time)
+        if str(patient.patient_id) not in active_patient_ids
+        and patient.arrival_time > current_time
+    ]
+    queue_display_patients = sorted(active_patients)
+    if len(queue_display_patients) < QUEUE_VIEW_LIMIT:
+        queue_display_patients.extend(
+            upcoming_patients[: QUEUE_VIEW_LIMIT - len(queue_display_patients)]
+        )
+
     waiting_room_patients = []
-    for patient in sorted(active_patients)[:4]:
+    for patient in queue_display_patients[:QUEUE_VIEW_LIMIT]:
+        patient_id = str(patient.patient_id)
+        if patient_id in waiting_patient_ids:
+            status = "Waiting (等待中)"
+            wait_minutes = max(patient.calculate_wait_minutes(current_time), 0.0)
+        elif patient_id in in_service_patient_ids:
+            status = "In Service (正在接诊)"
+            wait_minutes = max(patient.calculate_wait_minutes(current_time), 0.0)
+        else:
+            status = "Scheduled (即将到达)"
+            wait_minutes = 0.0
         waiting_room_patients.append(
             {
                 "patient_id": _patient_code(patient.patient_id),
                 "name": patient.name,
                 "priority": TRIAGE_LABELS[patient.triage_level],
                 "arrival": patient.arrival_time.strftime("%H:%M"),
-                "wait": _format_wait(max(patient.calculate_wait_minutes(current_time), 0.0)),
+                "wait": _format_wait(wait_minutes),
+                "status": status,
                 "tone": TRIAGE_TONES[patient.triage_level],
             }
         )
 
-    estimate_rows = []
+    predicted_rows = []
     for level in TriageLevel:
         estimate = estimates[level]
-        estimate_rows.append(
+        predicted_rows.append(
             {
                 "priority": TRIAGE_LABELS[level],
                 "wait": _format_wait(estimate["estimated_wait_minutes"]),
@@ -251,20 +396,31 @@ def get_dashboard_context() -> dict:
         ("pyproject.toml", "Python package and dependency settings (依赖与打包配置)"),
     ]
 
-    runtime_hours = current_time.hour - 8
-    runtime_minutes = current_time.minute
+    max_offset_minutes = _max_snapshot_offset(patients)
+    next_snapshot_offset = snapshot_offset_minutes + SNAPSHOT_STEP_MINUTES
+    if next_snapshot_offset > max_offset_minutes:
+        next_snapshot_offset = 0
+
+    runtime_delta = current_time - SHIFT_START_TIME
+    runtime_hours, runtime_remainder = divmod(int(runtime_delta.total_seconds()), 3600)
+    runtime_minutes = runtime_remainder // 60
 
     return {
         "app_title": "Hospital Triage Scheduler (医院分诊调度系统)",
-        "subtitle": (
-            "Real-data Flask dashboard from your zip package, queue logic, simulation, and analysis."
-        ),
+        "subtitle": "Real-data Flask dashboard from your zip package, queue logic, simulation, and analysis.",
+        "current_snapshot_offset": snapshot_offset_minutes,
+        "next_snapshot_offset": next_snapshot_offset,
+        "max_snapshot_offset": max_offset_minutes,
+        "refresh_step_minutes": SNAPSHOT_STEP_MINUTES,
         "summary_cards": [
             {
                 "badge": "AQ",
                 "title": "Active Queue (当前排队)",
                 "value": str(len(active_patients)),
-                "delta": f"Top {len(waiting_room_patients)} shown in queue view (队列视图展示前 {len(waiting_room_patients)} 位).",
+                "delta": (
+                    f"Showing {len(waiting_room_patients)} of up to {QUEUE_VIEW_LIMIT} "
+                    f"in queue view (队列视图最多展示前 {QUEUE_VIEW_LIMIT} 位)."
+                ),
                 "tone": "neutral",
             },
             {
@@ -291,13 +447,31 @@ def get_dashboard_context() -> dict:
         ],
         "queue_modes": queue_modes,
         "control_buttons": [
-            {"label": "Run Simulation (运行仿真)", "tone": "success"},
-            {"label": "Open Dataset (打开数据集)", "tone": "warning"},
-            {"label": "Inspect Queue (查看队列)", "tone": "outline"},
-            {"label": "Refresh Snapshot (刷新快照)", "tone": "danger"},
+            {
+                "action": "run-simulation",
+                "label": "Run Simulation (运行仿真)",
+                "tone": "success",
+            },
+            {
+                "action": "open-dataset",
+                "label": "Open Dataset (打开数据集)",
+                "tone": "warning",
+            },
+            {
+                "action": "inspect-queue",
+                "label": "Inspect Queue (查看队列)",
+                "tone": "outline",
+            },
+            {
+                "action": "refresh-snapshot",
+                "label": "Refresh Snapshot (刷新快照)",
+                "tone": "danger",
+            },
         ],
         "system_overview": {
             "clock": current_time.strftime("%Y-%m-%d %H:%M:%S"),
+            "clock_iso": current_time.isoformat(),
+            "shift_start_iso": SHIFT_START_TIME.isoformat(),
             "status": "System Online (系统在线)",
             "runtime": f"{runtime_hours:02d}:{runtime_minutes:02d}:00",
             "simulated_patients": str(len(patients)),
@@ -310,7 +484,7 @@ def get_dashboard_context() -> dict:
             "generated_at": datetime.fromtimestamp(DATASET_PATH.stat().st_mtime).strftime("%Y-%m-%d %H:%M"),
         },
         "waiting_room_patients": waiting_room_patients,
-        "heap_levels": _build_heap_levels(active_patients),
+        "heap_levels": _build_heap_levels(queue_display_patients[:QUEUE_VIEW_LIMIT]),
         "anomaly_breakdown": _build_anomaly_breakdown(inversions),
         "recent_anomalies": [
             {
@@ -329,12 +503,14 @@ def get_dashboard_context() -> dict:
                 "message": "No priority inversion detected in the current snapshot (当前快照未发现优先级反转).",
             }
         ],
-        "predicted_rows": estimate_rows,
+        "predicted_rows": predicted_rows,
+        "wait_trend_lines": wait_trend_lines,
+        "wait_trend_labels": wait_trend_labels,
         "overtime_card": {
             "risk_percent": timeout_summary["risk_percent"],
             "risk_label": top_risk_label,
             "details": [
-                ("Queue Size (队列人数)", str(timeout_summary["queue_size"])),
+                ("Queue Size (队列人数)", str(len(active_patients))),
                 ("At-Risk Patients (风险患者)", str(len(timeout_summary["at_risk_ids"]))),
                 (
                     "Top At-Risk IDs (高风险编号)",
@@ -359,6 +535,13 @@ def get_dashboard_context() -> dict:
                 "detail": f"Priority inversions detected: {len(inversions)}",
             },
         ],
+        "simulation_summary": {
+            "treated_patients": shift_report["treated_patients"],
+            "compliance_rate": shift_report["compliance_rate"],
+            "max_wait_minutes": shift_report["max_wait_minutes"],
+            "at_risk_count": len(timeout_summary["at_risk_ids"]),
+            "snapshot_time": current_time.strftime("%Y-%m-%d %H:%M:%S"),
+        },
         "performance_rows": performance_rows,
         "performance_chart_available": PERFORMANCE_IMAGE_PATH.exists(),
         "performance_chart_path": str(PERFORMANCE_IMAGE_PATH),

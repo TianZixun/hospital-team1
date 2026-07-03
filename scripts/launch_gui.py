@@ -1,3 +1,4 @@
+from _bootstrap import PROJECT_ROOT  # noqa: F401
 from hospital_team1.visualization import launch_gui
 
 

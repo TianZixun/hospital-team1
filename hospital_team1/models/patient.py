@@ -64,9 +64,9 @@ class Patient:
 
     def get_max_allowed_wait(self) -> int:
         limits = {
-            TriageLevel.CRITICAL: 15,
-            TriageLevel.URGENT: 30,
-            TriageLevel.SEMI_URGENT: 60,
-            TriageLevel.NON_URGENT: 120,
+            TriageLevel.CRITICAL: 0,
+            TriageLevel.URGENT: 20,
+            TriageLevel.SEMI_URGENT: 35,
+            TriageLevel.NON_URGENT: 60,
         }
         return limits[self.triage_level]

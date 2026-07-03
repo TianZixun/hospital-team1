@@ -1,44 +1,44 @@
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from hospital_team1.data.csv_loader import load_patients_from_csv
 from hospital_team1.models import Patient
-from hospital_team1.queues import HeapPriorityQueue
+from hospital_team1.simulation.shift_simulation import (
+    DEFAULT_WORKSTATION_COUNT,
+    build_queue_snapshot,
+    project_waiting_starts,
+)
 
 
 class TimeoutPredictor:
-    """Predict which patients may exceed their max waiting time."""
+    """Predict which waiting patients may exceed their max waiting time."""
 
-    def __init__(self, treatment_slots_per_hour: int = 3) -> None:
-        self.slots_per_hour = treatment_slots_per_hour
+    def __init__(self, workstation_count: int = DEFAULT_WORKSTATION_COUNT) -> None:
+        self.workstation_count = workstation_count
 
     def predict_timeouts(
         self,
         current_time: datetime,
         queue: list[Patient],
-        avg_treatment_time: float,
+        station_available_times: list[datetime] | None = None,
     ) -> set[str]:
         predicted: set[str] = set()
-        for index, patient in enumerate(queue):
-            wait_minutes = index * avg_treatment_time / self.slots_per_hour
-            estimated_treatment_time = current_time + timedelta(minutes=wait_minutes)
+        projected_starts = project_waiting_starts(
+            queue,
+            current_time=current_time,
+            station_available_times=station_available_times,
+            workstation_count=self.workstation_count,
+        )
+        for patient in queue:
+            patient_id = str(patient.patient_id)
+            projected_start = projected_starts[patient_id]
             actual_wait = (
-                estimated_treatment_time - patient.arrival_time
+                projected_start - patient.arrival_time
             ).total_seconds() / 60
             if actual_wait > patient.get_max_allowed_wait():
-                predicted.add(str(patient.patient_id))
+                predicted.add(patient_id)
         return predicted
-
-    def predict_timeouts_with_queue(
-        self,
-        current_time: datetime,
-        heap_queue: HeapPriorityQueue,
-        avg_treatment_time: float,
-    ) -> set[str]:
-        return self.predict_timeouts(
-            current_time, heap_queue.get_all_sorted_patients(), avg_treatment_time
-        )
 
 
 def summarize_timeout_risk(
@@ -51,22 +51,24 @@ def summarize_timeout_risk(
     if current_time is None:
         current_time = datetime(2026, 6, 30, 14, 0, 0)
 
-    queue = HeapPriorityQueue()
-    active_patients = [p for p in patients if p.arrival_time <= current_time]
-    for patient in active_patients:
-        queue.enqueue(patient)
-
-    average_treatment = sum(
-        patient.estimated_treatment_minutes for patient in active_patients
-    ) / max(len(active_patients), 1)
-    predictor = TimeoutPredictor(treatment_slots_per_hour=3)
-    at_risk_ids = sorted(
-        predictor.predict_timeouts_with_queue(current_time, queue, average_treatment)
+    snapshot = build_queue_snapshot(
+        patients,
+        snapshot_time=current_time,
+        workstation_count=DEFAULT_WORKSTATION_COUNT,
     )
-    risk_percent = round((len(at_risk_ids) / max(len(active_patients), 1)) * 100)
+    waiting_patients = snapshot["waiting_patients"]
+    predictor = TimeoutPredictor(workstation_count=DEFAULT_WORKSTATION_COUNT)
+    at_risk_ids = sorted(
+        predictor.predict_timeouts(
+            current_time,
+            waiting_patients,
+            station_available_times=snapshot["station_available_times"],
+        )
+    )
+    risk_percent = round((len(at_risk_ids) / max(len(waiting_patients), 1)) * 100)
 
     details = []
-    for patient in active_patients:
+    for patient in waiting_patients:
         if str(patient.patient_id) in at_risk_ids:
             details.append(
                 {
@@ -80,5 +82,5 @@ def summarize_timeout_risk(
         "risk_percent": risk_percent,
         "at_risk_ids": at_risk_ids,
         "details": details[:5],
-        "queue_size": len(active_patients),
+        "queue_size": len(waiting_patients),
     }

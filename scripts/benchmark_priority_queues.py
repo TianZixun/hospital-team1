@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from _bootstrap import PROJECT_ROOT  # noqa: F401
 from hospital_team1.analysis.performance_analysis import (
     plot_results,
     run_performance_analysis,

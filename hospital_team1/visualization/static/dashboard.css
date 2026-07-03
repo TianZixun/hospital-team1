@@ -306,6 +306,11 @@ a {
   transform: scale(0.98);
 }
 
+.control-button.is-busy {
+  opacity: 0.78;
+  pointer-events: none;
+}
+
 .control-button.success {
   background: #2ea45d;
   color: #fff;
@@ -455,9 +460,12 @@ a {
   gap: 16px;
 }
 
-.primary-row,
 .secondary-row {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.primary-row {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .analysis-row {
@@ -492,31 +500,37 @@ a {
 }
 
 .patient-flow {
-  display: flex;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 10px;
-  overflow-x: auto;
   padding-bottom: 8px;
 }
 
 .patient-card {
-  min-width: 138px;
-  padding: 12px;
+  padding: 9px 10px;
   border-radius: 16px;
   border: 1px solid var(--line);
   background: #fbfdff;
 }
 
+.patient-card.critical,
 .patient-card.high {
   border-color: #ef9696;
   background: var(--red-soft);
 }
 
+.patient-card.urgent,
 .patient-card.medium {
   border-color: #f0c06f;
   background: #fff4df;
 }
 
+.patient-card.semi {
+  border-color: #9dc0f8;
+  background: #f0f6ff;
+}
+
+.patient-card.non,
 .patient-card.low {
   border-color: #9dd3ad;
   background: #edf9f2;
@@ -532,25 +546,37 @@ a {
 }
 
 .patient-card p + p {
-  margin-top: 6px;
+  margin-top: 3px;
+}
+
+.patient-card p {
+  font-size: 0.76rem;
+  line-height: 1.18;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.patient-card strong {
+  margin-bottom: 4px;
+  font-size: 0.9rem;
 }
 
 .flow-arrow,
 .flow-null {
-  flex: 0 0 auto;
   display: grid;
   place-items: center;
   font-weight: 800;
 }
 
 .flow-arrow {
-  font-size: 1.4rem;
-  color: #7088a4;
+  display: none;
 }
 
 .flow-null {
-  min-width: 56px;
-  padding: 12px;
+  grid-column: 1 / -1;
+  min-height: 36px;
+  padding: 8px 12px;
   border-radius: 16px;
   border: 1px dashed var(--line-strong);
   color: #667d98;
@@ -565,6 +591,13 @@ a {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.84rem;
+}
+
+.board-card.is-highlighted {
+  outline: 2px solid rgba(48, 119, 242, 0.28);
+  box-shadow:
+    var(--shadow),
+    0 0 0 8px rgba(48, 119, 242, 0.08);
 }
 
 .heap-tree {
@@ -717,6 +750,29 @@ a {
   font-weight: 700;
 }
 
+.wait-trend-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.wait-trend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.wait-trend-item::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
 .sparkline-card {
   margin-top: 16px;
   padding: 10px 10px 0;
@@ -743,16 +799,37 @@ a {
   stroke-linejoin: round;
 }
 
-.sparkline-card .high-line {
+.sparkline-card .trend-line.critical,
+.wait-trend-item.critical {
   stroke: var(--red);
+  color: var(--red);
 }
 
-.sparkline-card .medium-line {
+.sparkline-card .trend-line.urgent,
+.wait-trend-item.urgent {
   stroke: var(--orange);
+  color: var(--orange);
 }
 
-.sparkline-card .low-line {
+.sparkline-card .trend-line.semi,
+.wait-trend-item.semi {
+  stroke: var(--blue);
+  color: var(--blue);
+}
+
+.sparkline-card .trend-line.non,
+.wait-trend-item.non {
   stroke: var(--green);
+  color: var(--green);
+}
+
+.trend-label-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.75rem;
 }
 
 .gauge-wrap {
@@ -946,6 +1023,39 @@ a {
   font-size: 0.88rem;
 }
 
+.toast-stack {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 50;
+  display: grid;
+  gap: 10px;
+}
+
+.toast {
+  max-width: 340px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.toast.success {
+  border-color: #9fd5b0;
+}
+
+.toast.info {
+  border-color: #9dc0f8;
+}
+
+.toast.warning {
+  border-color: #f2cf91;
+}
+
 @media (max-width: 1180px) {
   .dashboard-grid {
     grid-template-columns: 220px minmax(0, 1fr);
@@ -997,15 +1107,11 @@ a {
   }
 
   .patient-flow {
-    flex-direction: column;
-  }
-
-  .flow-arrow {
-    transform: rotate(90deg);
+    grid-template-columns: 1fr;
   }
 
   .flow-null {
-    width: fit-content;
+    width: auto;
   }
 
   .heap-level {
