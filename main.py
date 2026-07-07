@@ -22,6 +22,29 @@ TRIAGE_LABELS = {
     TriageLevel.NON_URGENT: "NON_URGENT  (4)",
 }
 
+QueueLike = WaitingRoom | HeapPriorityQueue | SortedLinkedListPriorityQueue
+
+
+def build_demo_patients() -> tuple[Patient, Patient]:
+    return (
+        Patient(
+            1,
+            "Alice",
+            45,
+            TriageLevel.CRITICAL,
+            datetime(2026, 6, 30, 10, 0, 0),
+            30,
+        ),
+        Patient(
+            2,
+            "Bob",
+            60,
+            TriageLevel.CRITICAL,
+            datetime(2026, 6, 30, 10, 30, 0),
+            25,
+        ),
+    )
+
 
 def print_separator(title: str = "") -> None:
     if title:
@@ -48,25 +71,36 @@ def print_dataset_summary(patients: list[Patient]) -> None:
         print(f"      {patient}")
 
 
+def add_patients_to_queue(queue: QueueLike, patients: list[Patient]) -> None:
+    for patient in patients:
+        if isinstance(queue, WaitingRoom):
+            queue.add_patient(patient)
+        else:
+            queue.enqueue(patient)
+
+
+def print_patient_rows(
+    patients: list[Patient], limit: int, include_index: bool = False
+) -> None:
+    for index, patient in enumerate(patients[:limit], start=1):
+        prefix = f"    {index:<4} " if include_index else "      "
+        print(
+            f"{prefix}{patient.patient_id:<5} {patient.name:<12} "
+            f"{TRIAGE_LABELS[patient.triage_level]:<16} "
+            f"{patient.arrival_time.strftime('%H:%M'):<8}"
+            f"{'' if include_index else f' {patient.age:<5}'}"
+        )
+
+
+def drain_queue(queue: QueueLike) -> None:
+    while not queue.is_empty():
+        queue.dequeue()
+
+
 def run_waiting_room_demo(patients: list[Patient]) -> None:
     print_separator("Task 1: Patient Model & WaitingRoom (Singly Linked List)")
 
-    alice = Patient(
-        1,
-        "Alice",
-        45,
-        TriageLevel.CRITICAL,
-        datetime(2026, 6, 30, 10, 0, 0),
-        30,
-    )
-    bob = Patient(
-        2,
-        "Bob",
-        60,
-        TriageLevel.CRITICAL,
-        datetime(2026, 6, 30, 10, 30, 0),
-        25,
-    )
+    alice, bob = build_demo_patients()
 
     print("\n  [1a] Patient Tiebreaker (__lt__)")
     print("      Alice : CRITICAL, arrived 10:00")
@@ -77,8 +111,7 @@ def run_waiting_room_demo(patients: list[Patient]) -> None:
 
     print("\n  [1b] WaitingRoom - Singly Linked List Operations")
     waiting_room = WaitingRoom()
-    for patient in patients:
-        waiting_room.add_patient(patient)
+    add_patients_to_queue(waiting_room, patients)
 
     print(
         f"      add_patient() x {len(patients)}  -->  size = {waiting_room.get_size()}"
@@ -107,12 +140,7 @@ def run_waiting_room_demo(patients: list[Patient]) -> None:
     print(f"\n      Current WaitingRoom ({len(waiting_patients)} patients):")
     print(f"      {'ID':<5} {'Name':<12} {'Triage':<16} {'Arrival':<8} {'Age':<5}")
     print(f"      {'-' * 4} {'-' * 11} {'-' * 15} {'-' * 7} {'-' * 4}")
-    for patient in waiting_patients[:8]:
-        print(
-            f"      {patient.patient_id:<5} {patient.name:<12} "
-            f"{TRIAGE_LABELS[patient.triage_level]:<16} "
-            f"{patient.arrival_time.strftime('%H:%M'):<8} {patient.age:<5}"
-        )
+    print_patient_rows(waiting_patients, limit=8)
     if len(waiting_patients) > 8:
         print(f"      ... and {len(waiting_patients) - 8} more")
 
@@ -122,9 +150,8 @@ def run_priority_queue_demo(patients: list[Patient]) -> None:
 
     heap_queue = HeapPriorityQueue()
     linked_queue = SortedLinkedListPriorityQueue()
-    for patient in patients:
-        heap_queue.enqueue(patient)
-        linked_queue.enqueue(patient)
+    add_patients_to_queue(heap_queue, patients)
+    add_patients_to_queue(linked_queue, patients)
 
     assert heap_queue.get_size() == len(patients)
     assert linked_queue.get_size() == len(patients)
@@ -157,31 +184,11 @@ def run_priority_queue_demo(patients: list[Patient]) -> None:
     print("\n    Full Dequeue Order (HeapPriorityQueue):")
     print(f"    {'#':<4} {'ID':<5} {'Name':<12} {'Triage':<16} {'Arrival':<8}")
     print(f"    {'-' * 3} {'-' * 4} {'-' * 11} {'-' * 15} {'-' * 7}")
-    for index, patient in enumerate(heap_order, start=1):
-        print(
-            f"    {index:<4} {patient.patient_id:<5} {patient.name:<12} "
-            f"{TRIAGE_LABELS[patient.triage_level]:<16} "
-            f"{patient.arrival_time.strftime('%H:%M'):<8}"
-        )
+    print_patient_rows(heap_order, limit=len(heap_order), include_index=True)
 
     print("\n  [2e] Peek / Dequeue Consistency")
     demo_queue = HeapPriorityQueue()
-    alice = Patient(
-        1,
-        "Alice",
-        45,
-        TriageLevel.CRITICAL,
-        datetime(2026, 6, 30, 10, 0, 0),
-        30,
-    )
-    bob = Patient(
-        2,
-        "Bob",
-        60,
-        TriageLevel.CRITICAL,
-        datetime(2026, 6, 30, 10, 30, 0),
-        25,
-    )
+    alice, bob = build_demo_patients()
     demo_queue.enqueue(alice)
     demo_queue.enqueue(bob)
 
@@ -198,10 +205,8 @@ def run_priority_queue_demo(patients: list[Patient]) -> None:
     print(f"      Remaining size: {demo_queue.get_size()}")
 
     print("\n  [2f] Empty Queue Edge Cases")
-    while not heap_queue.is_empty():
-        heap_queue.dequeue()
-    while not linked_queue.is_empty():
-        linked_queue.dequeue()
+    drain_queue(heap_queue)
+    drain_queue(linked_queue)
 
     assert heap_queue.is_empty() and linked_queue.is_empty()
     assert heap_queue.dequeue() is None
