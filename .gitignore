@@ -16,3 +16,7 @@ dist/
 *.egg-info/
 work/
 outputs/
+.vscode/
+*.zip
+.DS_Store
+Thumbs.db
