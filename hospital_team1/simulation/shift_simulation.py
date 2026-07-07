@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 
 from hospital_team1.models import Patient, TriageLevel
+from hospital_team1.simulation.compliance import is_wait_time_compliant
 
 
 DEFAULT_WORKSTATION_COUNT = 3
@@ -16,13 +17,12 @@ def _queue_sort_key(patient: Patient) -> tuple[int, int, datetime]:
 
 def _build_record(patient: Patient, start_time: datetime) -> dict[str, object]:
     wait_minutes = max((start_time - patient.arrival_time).total_seconds() / 60, 0.0)
-    max_allowed = patient.get_max_allowed_wait()
     return {
         "patient": patient,
         "treatment_time": start_time,
         "wait_minutes": round(wait_minutes, 1),
-        "max_allowed": max_allowed,
-        "within_threshold": wait_minutes <= max_allowed,
+        "max_allowed": patient.get_max_allowed_wait(),
+        "within_threshold": is_wait_time_compliant(patient, wait_minutes),
     }
 
 
