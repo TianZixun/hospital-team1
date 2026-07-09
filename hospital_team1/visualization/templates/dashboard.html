@@ -10,13 +10,14 @@
   <body>
     <div
       class="dashboard-page"
-      data-clock-iso="{{ system_overview.clock_iso }}"
-      data-shift-start-iso="{{ system_overview.shift_start_iso }}"
+      data-live-clock-iso="{{ system_overview.real_clock_iso }}"
       data-current-offset="{{ current_snapshot_offset }}"
       data-next-offset="{{ next_snapshot_offset }}"
       data-max-offset="{{ max_snapshot_offset }}"
       data-refresh-step="{{ refresh_step_minutes }}"
       data-run-simulation-url="{{ run_simulation_url }}"
+      data-add-patient-url="{{ add_patient_url }}"
+      data-complete-patient-url-template="{{ complete_patient_url_template }}"
       data-dataset-url="{{ dataset_download_url }}"
     >
       <header class="topbar panel">
@@ -28,7 +29,7 @@
           </div>
         </div>
         <div class="topbar-meta">
-          <span class="meta-chip" id="live-clock" data-clock-role="clock">{{ system_overview.clock }}</span>
+          <span class="meta-chip" id="live-clock">{{ system_overview.real_clock }}</span>
           <span class="meta-chip success">{{ system_overview.status }}</span>
         </div>
       </header>
@@ -45,7 +46,7 @@
               <div class="upload-card">
                 <div class="upload-icon">-></div>
                 <strong>Patient CSV Loaded (患者 CSV 已加载)</strong>
-                <p>Real patient data is loaded from your zip package (已加载压缩包中的真实患者数据).</p>
+                <p>Real patient data is loaded from your project CSV (界面当前读取项目里的真实患者 CSV 数据).</p>
               </div>
               <div class="dataset-meta">
                 <p>Latest File (当前文件): {{ dataset_overview.file_name }}</p>
@@ -85,6 +86,9 @@
                 </button>
                 {% endfor %}
               </div>
+              <p class="helper-text action-note">
+                New patients are first added into the waiting room, and only completed patients can be removed from the board (新增病人会先进入候诊区，只有已完成就诊的病人才可以移除).
+              </p>
             </section>
           </section>
 
@@ -105,6 +109,35 @@
               <span>Compliance Rate (合规率):</span>
               <strong>{{ system_overview.utilization_label }}</strong>
             </div>
+          </section>
+
+          <section class="panel finished-panel">
+            <div class="panel-heading">
+              <h2>Completed Patients (已完成就诊)</h2>
+            </div>
+            {% if recent_completed_patients %}
+            <div class="completed-list">
+              {% for patient in recent_completed_patients %}
+              <div class="completed-item {{ patient.tone }}">
+                <strong>{{ patient.patient_id }}</strong>
+                <p>Name (姓名): {{ patient.name }}</p>
+                <p>Priority (优先级): {{ patient.priority }}</p>
+                <p>Wait Before Treatment (就诊前等待): {{ patient.wait }}</p>
+                <p>Finished At (完成时间): {{ patient.finished_at }}</p>
+                <button
+                  type="button"
+                  class="mini-button"
+                  data-action="complete-patient"
+                  data-patient-id="{{ patient.raw_id }}"
+                >
+                  Remove Record (移除记录)
+                </button>
+              </div>
+              {% endfor %}
+            </div>
+            {% else %}
+            <p class="helper-text">No patient has completed treatment in this snapshot yet (当前快照还没有已完成就诊的病人).</p>
+            {% endif %}
           </section>
         </aside>
 
@@ -134,15 +167,23 @@
                   </div>
                 </div>
               </div>
+
               <div class="patient-flow">
                 {% for patient in waiting_room_patients %}
-                <div class="patient-card {{ patient.tone }}">
-                  <strong>ID: {{ patient.patient_id }}</strong>
+                <div
+                  class="patient-card {{ patient.tone }}"
+                  data-patient-id="{{ patient.patient_id }}"
+                  data-patient-raw-id="{{ patient.raw_id }}"
+                >
+                  <div class="patient-card-head">
+                    <strong>{{ patient.patient_id }}</strong>
+                    <span class="status-chip">{{ patient.status }}</span>
+                  </div>
                   <p>Name (姓名): {{ patient.name }}</p>
                   <p>Priority (优先级): {{ patient.priority }}</p>
                   <p>Arrival (到达时间): {{ patient.arrival }}</p>
                   <p>Wait (等待时间): {{ patient.wait }}</p>
-                  <p>Status (状态): {{ patient.status }}</p>
+                  <p>Treatment (诊疗时长): {{ patient.treatment_minutes }} min</p>
                 </div>
                 {% if not loop.last %}
                 <div class="flow-arrow">&rarr;</div>
@@ -151,34 +192,65 @@
                 {% endif %}
                 {% endfor %}
               </div>
+
               <div class="card-foot">
-                <span>Total in Waiting Room (候诊人数): {{ waiting_room_patients|length }}</span>
-                <span>Snapshot Time (快照时间): <span data-clock-role="clock">{{ system_overview.clock }}</span></span>
+                <span>Total in Queue View (当前展示人数): {{ waiting_room_patients|length }}</span>
+                <span>Snapshot Time (快照时间): {{ system_overview.snapshot_clock }}</span>
               </div>
             </article>
 
-            <article class="panel board-card">
+            <article class="panel board-card" id="heap-panel">
               <div class="card-head">
                 <div>
                   <h3>Priority Queue (优先队列) - Heap (堆结构)</h3>
-                  <p class="helper-text">Built from the live queue instead of placeholder nodes (来自真实队列而不是占位数据).</p>
+                  <p class="helper-text">The heap shows queue order, but treatment only starts when a patient is really assigned to service (堆里展示的是排队顺序，不是自动开始看病).</p>
                 </div>
               </div>
+
               <div class="heap-tree">
                 {% for level in heap_levels %}
                 <div class="heap-level">
                   {% for node in level %}
-                  <div class="heap-node {{ node.tone }}">
+                  <button
+                    type="button"
+                    class="heap-node {{ node.tone }}{% if heap_detail and heap_detail.raw_id == node.raw_id %} is-selected{% endif %}"
+                    data-heap-node
+                    data-raw-id="{{ node.raw_id }}"
+                    data-label="{{ node.label }}"
+                    data-name="{{ node.name }}"
+                    data-priority="{{ node.priority }}"
+                    data-arrival="{{ node.arrival }}"
+                    data-wait="{{ node.wait }}"
+                    data-status="{{ node.status }}"
+                    data-treatment="{{ node.treatment_minutes }}"
+                  >
                     <strong>{{ node.label }}</strong>
                     <span>{{ node.priority }}</span>
-                  </div>
+                  </button>
                   {% endfor %}
                 </div>
                 {% endfor %}
               </div>
+
+              <div class="heap-detail-card" id="heap-detail-card">
+                {% if heap_detail %}
+                <div class="heap-detail-head">
+                  <strong id="heap-detail-label">{{ heap_detail.label }}</strong>
+                  <span id="heap-detail-status">{{ heap_detail.status }}</span>
+                </div>
+                <p id="heap-detail-name">Name (姓名): {{ heap_detail.name }}</p>
+                <p id="heap-detail-priority">Priority (优先级): {{ heap_detail.priority }}</p>
+                <p id="heap-detail-arrival">Arrival (到达时间): {{ heap_detail.arrival }}</p>
+                <p id="heap-detail-wait">Estimated Wait (预计等待): {{ heap_detail.wait }}</p>
+                <p id="heap-detail-treatment">Treatment (诊疗时长): {{ heap_detail.treatment_minutes }} min</p>
+                {% else %}
+                <strong>No patient in heap right now.</strong>
+                {% endif %}
+              </div>
+
               <div class="card-foot">
                 <span>Heap Levels (堆层数): {{ heap_levels|length }}</span>
-                <span>Real Queue Source (真实来源): heap_priority_queue.py</span>
+                <span>Click any node to inspect it (点击任意节点查看详情)</span>
               </div>
             </article>
           </section>
@@ -293,7 +365,7 @@
               <div class="card-head card-head-stack">
                 <div>
                   <h3>Performance Analysis (性能分析)</h3>
-                  <p class="helper-text">Uses the real benchmark CSV and chart from your project package (读取压缩包中的真实性能结果).</p>
+                  <p class="helper-text">This section uses the real benchmark CSV and chart in the project (这里直接读取项目里的真实性能结果).</p>
                 </div>
                 <div class="link-actions">
                   {% if performance_csv_url %}
@@ -335,55 +407,12 @@
               </table>
             </article>
           </section>
-
-          <section class="content-row tertiary-row">
-            <article class="panel board-card full-span">
-              <div class="card-head">
-                <h3>Content Slots (内容接入位置)</h3>
-              </div>
-              <div class="slot-grid">
-                {% for slot in content_slots %}
-                <div class="slot-card">
-                  <strong>{{ slot.title }}</strong>
-                  <p class="slot-path">{{ slot.path }}</p>
-                  <p>{{ slot.hint }}</p>
-                </div>
-                {% endfor %}
-              </div>
-            </article>
-          </section>
         </main>
-
-        <aside class="structure-rail">
-          <section class="panel structure-panel">
-            <div class="panel-heading">
-              <h2>Project Structure (项目结构)</h2>
-            </div>
-            <div class="structure-header">
-              <span>Description (说明)</span>
-            </div>
-            <div class="structure-list">
-              {% for path, desc in project_map %}
-              <div class="structure-row">
-                <div class="structure-path">
-                  <span class="structure-icon {{ 'folder' if path.endswith('/') else 'file' }}"></span>
-                  <code>{{ path }}</code>
-                </div>
-                <span>{{ desc }}</span>
-              </div>
-              {% endfor %}
-            </div>
-          </section>
-        </aside>
       </div>
 
-      <footer class="page-footer">
-        <span>{{ app_title }} v0.4.0</span>
-        <span>Flask + Python + Real CSV / Analysis / Queue Data (真实 CSV / 分析 / 队列数据)</span>
-      </footer>
+      <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
     </div>
 
-    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
     <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
   </body>
 </html>

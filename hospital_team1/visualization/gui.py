@@ -5,7 +5,11 @@ from pathlib import Path
 
 from flask import Flask, abort, jsonify, render_template, request, send_from_directory, url_for
 
-from .dashboard_data import get_dashboard_context
+from .dashboard_data import (
+    add_runtime_patient,
+    complete_runtime_patient,
+    get_dashboard_context,
+)
 
 
 def create_app() -> Flask:
@@ -61,6 +65,15 @@ def create_app() -> Flask:
             "run_simulation_action",
             snapshot_offset=snapshot_offset,
         )
+        context["add_patient_url"] = url_for(
+            "add_patient_action",
+            snapshot_offset=snapshot_offset,
+        )
+        context["complete_patient_url_template"] = url_for(
+            "complete_patient_action",
+            patient_id="__PATIENT_ID__",
+            snapshot_offset=snapshot_offset,
+        )
         return render_template("dashboard.html", **context)
 
     @app.get("/api/actions/run-simulation")
@@ -79,6 +92,30 @@ def create_app() -> Flask:
                 "summary": summary,
             }
         )
+
+    @app.post("/api/actions/add-patient")
+    def add_patient_action():
+        snapshot_offset = _parse_snapshot_offset()
+        patient = add_runtime_patient(snapshot_offset_minutes=snapshot_offset)
+        return jsonify(
+            {
+                "message": (
+                    f"{patient['patient_id']} added from the CSV-based template. "
+                    "The queue and charts will refresh now."
+                ),
+                "patient": patient,
+            }
+        )
+
+    @app.post("/api/actions/complete-patient/<patient_id>")
+    def complete_patient_action(patient_id: str):
+        snapshot_offset = _parse_snapshot_offset()
+        result = complete_runtime_patient(
+            patient_id=patient_id,
+            snapshot_offset_minutes=snapshot_offset,
+        )
+        status_code = 200 if result["ok"] else 404
+        return jsonify(result), status_code
 
     @app.get("/artifacts/<path:filename>")
     def artifact_file(filename: str):

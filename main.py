@@ -7,9 +7,7 @@ from pathlib import Path
 from hospital_team1.data.csv_loader import load_patients_from_csv
 from hospital_team1.models import Patient, TriageLevel
 from hospital_team1.queues.heap_priority_queue import HeapPriorityQueue
-from hospital_team1.queues.sorted_linked_list_queue import (
-    SortedLinkedListPriorityQueue,
-)
+from hospital_team1.queues import SortedLinkedListPriorityQueue
 from hospital_team1.structures import WaitingRoom
 
 
@@ -216,7 +214,6 @@ def main() -> None:
 
     print("\n" + "=" * 60)
     print("    All Part 1 checks passed.")
-    print("    GUI dashboard is still available via: python scripts/launch_gui.py")
     print("=" * 60)
 
 

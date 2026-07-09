@@ -43,8 +43,10 @@ class TimeoutPredictor:
 
 def summarize_timeout_risk(
     current_time: datetime | None = None,
+    patients: list[Patient] | None = None,
 ) -> dict[str, object]:
-    patients = load_patients_from_csv()
+    if patients is None:
+        patients = load_patients_from_csv()
     if not patients:
         return {"risk_percent": 0, "at_risk_ids": [], "details": []}
 
