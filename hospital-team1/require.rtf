@@ -1,0 +1,149 @@
+{\rtf1\ansi\ansicpg936\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww22100\viewh12860\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 # Project 1 - Hospital Patient Triage System\
+\
+# Presentation of the Project\
+\
+A hospital emergency department receives patients continuously. Each patient is assessed on arrival and assigned a triage level (Critical, Urgent, Semi-Urgent, Non-Urgent) based on symptoms and vital signs. The system must ensure that the most critical patients are always treated first, that waiting lists are tracked dynamically, and that the medical staff can analyse throughput and bottlenecks at the end of each shift.\
+\
+---\
+\
+## **Part 1 \'96 Designing and Building the Software Toolbox**\
+\
+### **Task 1** \'96 **Data Modelling**\
+\
+Design Python classes to represent:\
+\
+- A **Patient**, with at minimum: `patient_id`, `name`, `age`, `triage_level`, `arrival_time`, `estimated_treatment_duration`.\
+    - `triage_level` must be constrained using an enumeration (Critical=1, Urgent=2, Semi-Urgent=3, Non-Urgent=4). The lower the number, the higher the priority.\
+    - Implement `__repr__`, `__eq__`, and `__lt__` \'97 the comparison must reflect triage priority, with arrival time as a tiebreaker.\
+- A **WaitingRoom**, which tracks all patients currently waiting using a **linked list**.\
+    - The linked list must be your own implementation (not Python's `list`). Each node holds a patient and a reference to the next node.\
+    - Implement the following methods: add patient, remove patient by ID, find patient by ID, display all waiting patients in order.\
+\
+### Task 2 \'96 Priority Queue: Your Choice of Implementation\
+\
+The triage queue must always serve the most critical patient next. You will implement this priority queue **twice**, using two different underlying structures:\
+\
+- **Implementation A:** A binary max-heap (array-based).\
+- **Implementation B:** A structure of your choice \'97 you may use a sorted linked list, a BST, or any other structure from the course.\
+\
+For both implementations, provide: `enqueue(patient)`, `dequeue()` (returns highest-priority patient), `peek()`, `is_empty()`, `size()`.\
+\
+<aside>\
+\uc0\u55357 \u56787 \u65039 \
+\
+- Why is a heap a natural fit for a priority queue?\
+- What are the trade-offs of your Implementation B vs. the heap?\
+- In what scenario would Implementation B outperform the heap?\
+</aside>\
+\
+Test all methods thoroughly with `unittest`, including cases where two patients have the same triage level (tiebreaker must be deterministic).\
+\
+### Task 3 \'96 Generate and Load the Dataset\
+\
+You will need to generate a dataset yourself (minimum 20 patients).\
+\
+```\
+**patients_dataset.csv**\
+patient_id, name, age, triage_level, arrival_time, estimated_treatment_duration\
+```\
+\
+Write a generator function that produces a realistic CSV dataset of N patients. Parameters: N (number of patients), distribution of triage levels (e.g., 10% Critical, 25% Urgent, 40% Semi-Urgent, 25% Non-Urgent), shift start time.\
+\
+Load the dataset into both the waiting room linked list and both priority queue implementations.\
+\
+---\
+\
+## Part 2 \'96 Analysis and Algorithms\
+\
+### Task 1 \'96 Shift Simulation\
+\
+Simulate a full shift: patients arrive in order of `arrival_time` and are enqueued. A "treatment slot" opens every fixed time interval (you choose the interval and justify it). Each time a slot opens, the highest-priority patient is dequeued and treated.\
+\
+Your simulation must track, for each patient:\
+\
+- Waiting time (time from arrival to treatment start)\
+- Whether they were treated within clinically acceptable thresholds (Critical: \uc0\u8804 15 min, Urgent: \u8804 30 min, Semi-Urgent: \u8804 60 min, Non-Urgent: \u8804 120 min)\
+\
+At the end of the simulation, report: \
+\
+- average waiting time per triage level\
+- percentage of patients treated within threshold\
+- maximum waiting time observed.\
+\
+<aside>\
+\uc0\u55357 \u56787 \u65039 \
+\
+- What does the simulation reveal about the hospital's capacity?\
+- At what patient arrival rate does the system start to fail (i.e., acceptable thresholds are breached)?\
+</aside>\
+\
+### Task 2 \'96 Comparative Performance Analysis\
+\
+Run both priority queue implementations on the same sequence of operations (enqueue + dequeue for N patients). Measure:\
+\
+- Time per enqueue operation\
+- Time per dequeue operation\
+- Total time for a full simulated shift\
+\
+Vary N: 10, 100, 500, 1000, 5000, 10000 patients. Plot \{time vs. N\} for both implementations on the same graph.\
+\
+<aside>\
+\uc0\u55357 \u56787 \u65039 \
+\
+- Does the empirical curve match the theoretical complexity of each implementation?\
+- At what scale does the difference become operationally meaningful?\
+- Which implementation would you recommend for a real hospital system, and why?\
+</aside>\
+\
+### Task 3 \'96 Waiting Room Analytics\
+\
+Using the linked list (waiting room), implement:\
+\
+- A function that returns the current average waiting time for patients by triage level.\
+- A function that detects "priority inversions": a patient with higher triage level who has been waiting longer than a patient with lower triage level who arrived later. This is a sign of a scheduling bug.\
+- A function that estimates the expected wait time for a newly arriving patient of a given triage level, based on the current state of the queue.\
+\
+### Task 4 \'96 Graphical Interface\
+\
+Build an interface that displays:\
+\
+- The current waiting room (linked list view, sorted by arrival time)\
+- The triage queue (heap view, showing the tree structure)\
+- A live simulation mode: the user can step through the simulation one time slot at a time and observe both structures updating\
+\
+---\
+\
+## Part 3 \'96 Open Design Challenge\
+\
+The hospital director asks: **"Can we predict, at any point during a shift, whether we will breach triage thresholds before the shift ends \'97 and if so, for which patients?"**\
+\
+This is a forecasting problem with no single correct solution. You must:\
+\
+1. Define what information is available at time T during the simulation.\
+2. Propose a prediction method based purely on the data structures you have built (no external ML libraries).\
+3. Implement it and evaluate its accuracy by comparing predictions against what actually happened in the simulation.\
+4. Document what your approach gets right, what it gets wrong, and what would need to change to improve it.\
+\
+---\
+\
+### **Deliverables**\
+\
+- Well documented, well organised source code, regularly versioned and uploaded in github.\
+- A report, in the form of Markdown files included in the project, documenting your design decisions, algorithms used, challenges faced, and how they were overcome.\
+- A presentation showcasing the functionality of your system with examples of analysis and simulation results.\
+\
+### **Evaluation Criteria**\
+\
+- Correctness and efficiency of the implemented data structures and algorithms.\
+- Organisation and clarity of the code.\
+- Coverage and relevance of the unit tests\
+- Usability and aesthetic of the graphical interface.\
+- Creativity and usefulness of the additional features implemented.\
+- Quality and clarity of the documentation and presentation.}

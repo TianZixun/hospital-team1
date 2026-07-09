@@ -1,0 +1,108 @@
+# Hospital Team 1
+
+This project is a hospital triage scheduling system built with Python and Flask.
+It now includes a bilingual dashboard, real CSV data from your zip package,
+queue analysis, shift simulation, and benchmark results.
+
+## Project Structure
+
+```text
+hospital_team1/
+  models/          Patient model and triage enum
+  structures/      Linked list and waiting room
+  queues/          Heap queue and second queue implementation
+  data/            CSV generation and import
+  simulation/      Scheduling simulation and compliance logic
+  analysis/        Performance and waiting-room analysis
+  visualization/   Flask dashboard and views
+  utils/           Shared constants and helpers
+tests/
+scripts/
+datasets/
+docs/
+slides/
+main.py
+test.py
+serve.py
+wsgi.py
+README.md
+pyproject.toml
+Dockerfile
+Procfile
+```
+
+## What Goes Where
+
+- Data models: `hospital_team1/models/`
+- Linked list and waiting room logic: `hospital_team1/structures/`
+- Priority queues: `hospital_team1/queues/`
+- CSV import and generation: `hospital_team1/data/`
+- Simulation rules and reports: `hospital_team1/simulation/`
+- Performance and waiting analysis: `hospital_team1/analysis/`
+- Flask dashboard and static files: `hospital_team1/visualization/`
+- Unit tests: `tests/`
+- Datasets: `datasets/`
+- Report files: `docs/`
+- Slide materials: `slides/`
+
+## Zip Package Content Already Connected
+
+- `datasets/patients_dataset.csv`
+- `performance_results.csv`
+- `performance_comparison.png`
+- `require.rtf`
+
+These files are already wired into the dashboard.
+
+## Run Locally
+
+Install dependencies:
+
+```bash
+pip install .
+```
+
+Run the Flask development server:
+
+```bash
+python scripts/launch_gui.py
+```
+
+Or run the production-style local server:
+
+```bash
+python serve.py
+```
+
+Then open:
+
+```text
+http://127.0.0.1:5055
+```
+
+## Tests
+
+```bash
+python test.py
+python -m unittest discover -s tests -p "test_*.py"
+```
+
+## Public Deployment Preparation
+
+This repository is prepared for public deployment with:
+
+- `serve.py` for a production-style entry point
+- `wsgi.py` for WSGI-based hosting
+- `Dockerfile` for container deployment
+- `Procfile` for simple platform startup configuration
+
+Any platform that supports Python or Docker can use these files to publish the
+dashboard with a public URL.
+
+## VSCode Note
+
+If the `py` launcher on Windows is broken, use the installed Python directly:
+
+```text
+C:\Users\32108\AppData\Local\Programs\Python\Python312\python.exe
+```

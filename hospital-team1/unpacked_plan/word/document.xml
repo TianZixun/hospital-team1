@@ -1,0 +1,1836 @@
+<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 wp14">
+  <w:body>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="80"/>
+        <w:jc w:val="center"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b/>
+          <w:color w:val="0B2545"/>
+          <w:sz w:val="44"/>
+        </w:rPr>
+        <w:t>Hospital Team1 四天冲刺计划表</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="200"/>
+        <w:jc w:val="center"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:color w:val="595959"/>
+          <w:sz w:val="21"/>
+        </w:rPr>
+        <w:t>适用时间：2026-07-07 到 2026-07-10</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="160"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>总目标：</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>把项目缩小到全组都能讲清楚的版本，先把 Part 1 做扎实，再把 Part 2 之后的内容按模块分给四个人独立完成，并在 GitHub 上体现个人贡献。</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:t>一、老师要求对应的行动</w:t>
+      </w:r>
+    </w:p>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblStyle w:val="TableGrid"/>
+        <w:tblW w:type="auto" w:w="0"/>
+        <w:tblLook w:firstColumn="1" w:firstRow="1" w:lastColumn="0" w:lastRow="0" w:noHBand="0" w:noVBand="1" w:val="04A0"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="3120"/>
+        <w:gridCol w:w="3120"/>
+        <w:gridCol w:w="3120"/>
+      </w:tblGrid>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>老师要求</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>具体动作</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>负责人</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>删掉你们讲不清楚的重复模块和部署内容</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>只保留一套真正理解的实现，删除重复模块、兼容包装层、部署文件和答辩用不上的扩展内容。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>你</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>全项目统一使用自写 heap</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>检查所有 heap 相关代码，把依赖库 heap 的地方统一换成自己写的 heap。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>队列负责人</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>补齐抽象基类接口</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>检查优先队列 base class，把缺失的 enqueue、dequeue、peek、is_empty、get_size 等接口补全。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>队列负责人</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>重写真实队列测试</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>覆盖空队列、单元素、相同优先级、两种实现同序这几类边界情况。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>队列负责人</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>四个人分别提交</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>Part 2 开始，每个人负责一个模块，并用自己的 GitHub 账号单独提交和 push。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>全组</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>报告自己写</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>报告最后统一重写，用自己的话回答 requirements 里的问题。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="3120"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>报告负责人 + 全组</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:t>二、你个人现在要做什么</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="80"/>
+        <w:ind w:left="360" w:hanging="259"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>• 你先当项目协调人，不要继续补新功能。</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="80"/>
+        <w:ind w:left="360" w:hanging="259"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>• 你负责确定保留哪些文件、删除哪些文件，并给四个人分模块。</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="80"/>
+        <w:ind w:left="360" w:hanging="259"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>• 你负责最终的 main 入口、项目结构说明、GitHub 提交记录和演示顺序。</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="80"/>
+        <w:ind w:left="360" w:hanging="259"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>• 你要盯住每个人必须用自己的账号提交，否则老师看不到个人贡献。</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:t>三、四天安排</w:t>
+      </w:r>
+    </w:p>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblStyle w:val="TableGrid"/>
+        <w:tblW w:type="auto" w:w="0"/>
+        <w:tblLook w:firstColumn="1" w:firstRow="1" w:lastColumn="0" w:lastRow="0" w:noHBand="0" w:noVBand="1" w:val="04A0"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="2340"/>
+        <w:gridCol w:w="2340"/>
+        <w:gridCol w:w="2340"/>
+        <w:gridCol w:w="2340"/>
+      </w:tblGrid>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>日期</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>主目标</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>全组任务</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>当天交付</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>第 1 天</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>缩小 Part 1</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>备份仓库，列出重复模块，确定最终结构，删部署和扩展内容。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>保留/删除清单，人员分工表，开始清理的提交记录。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>第 2 天</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>压实队列和 heap</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>统一自写 heap，补抽象基类，补队列测试，四个人轮流讲核心结构。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>Part 1 稳定版，队列测试通过，每个人都能讲清核心逻辑。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>第 3 天</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>并行做 Part 2</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>四个人各写各的模块和测试，每个人单独建分支和提交。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>四个人各自的分支、提交记录和可运行结果。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>第 4 天</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>合并、报告、答辩演练</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>只合并能讲清楚的内容，重写报告，完整演练一次展示和问答。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>最终仓库、最终报告、答辩讲稿。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:t>四、四个人建议分工</w:t>
+      </w:r>
+    </w:p>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblStyle w:val="TableGrid"/>
+        <w:tblW w:type="auto" w:w="0"/>
+        <w:tblLook w:firstColumn="1" w:firstRow="1" w:lastColumn="0" w:lastRow="0" w:noHBand="0" w:noVBand="1" w:val="04A0"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="2340"/>
+        <w:gridCol w:w="2340"/>
+        <w:gridCol w:w="2340"/>
+        <w:gridCol w:w="2340"/>
+      </w:tblGrid>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>成员</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>负责模块</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>核心文件</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+            <w:shd w:fill="E8EEF5"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>必须会讲的内容</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>你</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>项目结构 + main + 演示</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>main.py、visualization/、GitHub 记录</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>为什么项目要缩小、main 做什么、演示顺序是什么。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>成员 B</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>队列与 heap</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>queues/、structures/my_heap.py</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>heap 怎么工作、两种优先队列为什么顺序一致。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>成员 C</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>simulation</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>simulation/</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>病人怎么调度、等待开始时间怎么算、合规率怎么判断。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>成员 D</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>analysis + report</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>analysis/、报告内容</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="2340"/>
+            <w:tcMar>
+              <w:top w:w="90" w:type="dxa"/>
+              <w:start w:w="120" w:type="dxa"/>
+              <w:bottom w:w="90" w:type="dxa"/>
+              <w:end w:w="120" w:type="dxa"/>
+            </w:tcMar>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+                <w:b w:val="0"/>
+                <w:sz w:val="20"/>
+              </w:rPr>
+              <w:t>平均等待、超时风险、优先级反转怎么算，报告怎么对应代码。</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:t>五、老师大概率会检查什么</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="80"/>
+        <w:ind w:left="360" w:hanging="259"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>• 每个人能不能独立讲清楚自己负责模块的输入、输出、算法和测试。</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="80"/>
+        <w:ind w:left="360" w:hanging="259"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>• 自写 heap 是否真的在全项目被使用。</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="80"/>
+        <w:ind w:left="360" w:hanging="259"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>• 队列测试是不是边界测试，而不是只测正常流程。</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="80"/>
+        <w:ind w:left="360" w:hanging="259"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>• GitHub 上能不能看见四个人分开的提交记录。</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="80"/>
+        <w:ind w:left="360" w:hanging="259"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei"/>
+          <w:b w:val="0"/>
+          <w:sz w:val="22"/>
+        </w:rPr>
+        <w:t>• 报告是不是用自己的话回答了 requirements 的问题。</w:t>
+      </w:r>
+    </w:p>
+    <w:sectPr w:rsidR="00FC693F" w:rsidRPr="0006063C" w:rsidSect="00034616">
+      <w:footerReference w:type="default" r:id="rId9"/>
+      <w:pgSz w:w="12240" w:h="15840"/>
+      <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
+      <w:cols w:space="720"/>
+      <w:docGrid w:linePitch="360"/>
+    </w:sectPr>
+  </w:body>
+</w:document>
