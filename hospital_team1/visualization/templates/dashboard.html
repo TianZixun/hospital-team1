@@ -12,6 +12,7 @@
       class="dashboard-page"
       data-live-clock-iso="{{ system_overview.real_clock_iso }}"
       data-current-offset="{{ current_snapshot_offset }}"
+      data-current-queue-mode="{{ selected_queue_mode.key }}"
       data-next-offset="{{ next_snapshot_offset }}"
       data-max-offset="{{ max_snapshot_offset }}"
       data-refresh-step="{{ refresh_step_minutes }}"
@@ -64,13 +65,15 @@
             <section class="sidebar-section">
               <p class="section-label">2. Queue Implementation (队列实现)</p>
               <label class="select-wrap">
-                <select aria-label="Queue mode">
+                <select aria-label="Queue mode" data-queue-mode-select>
                   {% for mode in queue_modes %}
-                  <option>{{ mode.name }}</option>
+                  <option value="{{ mode.key }}"{% if mode.key == selected_queue_mode.key %} selected{% endif %}>{{ mode.name }}</option>
                   {% endfor %}
                 </select>
               </label>
-              <p class="helper-text">{{ queue_modes[0].desc }}</p>
+              <p class="helper-text">{{ selected_queue_mode.desc }}</p>
+              <p class="helper-text">{{ selected_queue_mode.complexity }}</p>
+              <p class="helper-text">{{ queue_mode_note }}</p>
             </section>
 
             <section class="sidebar-section">

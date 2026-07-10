@@ -4,6 +4,7 @@ if (dashboardPage) {
   const toastStack = document.getElementById("toast-stack");
   const queuePanel = document.getElementById("queue-inspection");
   const liveClockNode = document.getElementById("live-clock");
+  const queueModeSelect = document.querySelector("[data-queue-mode-select]");
   const patientCards = [...document.querySelectorAll(".patient-card[data-patient-id]")];
   const actionButtons = [...document.querySelectorAll(".button-stack .control-button")];
   const completeButtons = [...document.querySelectorAll("[data-action='complete-patient']")];
@@ -16,6 +17,7 @@ if (dashboardPage) {
   const nextOffset = Number.parseInt(dashboardPage.dataset.nextOffset ?? "0", 10);
   const currentOffset = Number.parseInt(dashboardPage.dataset.currentOffset ?? "0", 10);
   const liveClockSeed = dashboardPage.dataset.liveClockIso;
+  let currentQueueMode = dashboardPage.dataset.currentQueueMode ?? "heap";
 
   let liveClock = liveClockSeed ? new Date(liveClockSeed) : null;
 
@@ -80,6 +82,7 @@ if (dashboardPage) {
       "snapshot_offset",
       String(Number.isNaN(currentOffset) ? 0 : currentOffset),
     );
+    url.searchParams.set("queue_mode", currentQueueMode);
     return url.toString();
   }
 
@@ -227,6 +230,18 @@ if (dashboardPage) {
       "snapshot_offset",
       String(Number.isNaN(nextOffset) ? 0 : nextOffset),
     );
+    targetUrl.searchParams.set("queue_mode", currentQueueMode);
+    window.location.assign(targetUrl.toString());
+  }
+
+  function updateQueueMode(value) {
+    currentQueueMode = value || "heap";
+    const targetUrl = new URL(window.location.href);
+    targetUrl.searchParams.set("queue_mode", currentQueueMode);
+    targetUrl.searchParams.set(
+      "snapshot_offset",
+      String(Number.isNaN(currentOffset) ? 0 : currentOffset),
+    );
     window.location.assign(targetUrl.toString());
   }
 
@@ -313,6 +328,12 @@ if (dashboardPage) {
 
   if (heapNodes.length > 0) {
     updateHeapDetail(heapNodes[0]);
+  }
+
+  if (queueModeSelect) {
+    queueModeSelect.addEventListener("change", () => {
+      updateQueueMode(queueModeSelect.value);
+    });
   }
 
   highlightLastAddedPatient();

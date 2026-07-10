@@ -35,10 +35,20 @@ def create_app() -> Flask:
         except ValueError:
             return 0
 
+    def _parse_queue_mode() -> str:
+        raw_value = request.args.get("queue_mode", "heap")
+        if raw_value in {"heap", "ordered_list"}:
+            return raw_value
+        return "heap"
+
     @app.get("/")
     def dashboard() -> str:
         snapshot_offset = _parse_snapshot_offset()
-        context = get_dashboard_context(snapshot_offset_minutes=snapshot_offset)
+        queue_mode = _parse_queue_mode()
+        context = get_dashboard_context(
+            snapshot_offset_minutes=snapshot_offset,
+            queue_mode=queue_mode,
+        )
         if context["performance_chart_available"]:
             context["performance_chart_url"] = url_for(
                 "artifact_file",
@@ -64,22 +74,29 @@ def create_app() -> Flask:
         context["run_simulation_url"] = url_for(
             "run_simulation_action",
             snapshot_offset=snapshot_offset,
+            queue_mode=queue_mode,
         )
         context["add_patient_url"] = url_for(
             "add_patient_action",
             snapshot_offset=snapshot_offset,
+            queue_mode=queue_mode,
         )
         context["complete_patient_url_template"] = url_for(
             "complete_patient_action",
             patient_id="__PATIENT_ID__",
             snapshot_offset=snapshot_offset,
+            queue_mode=queue_mode,
         )
         return render_template("dashboard.html", **context)
 
     @app.get("/api/actions/run-simulation")
     def run_simulation_action():
         snapshot_offset = _parse_snapshot_offset()
-        context = get_dashboard_context(snapshot_offset_minutes=snapshot_offset)
+        queue_mode = _parse_queue_mode()
+        context = get_dashboard_context(
+            snapshot_offset_minutes=snapshot_offset,
+            queue_mode=queue_mode,
+        )
         summary = context["simulation_summary"]
         return jsonify(
             {

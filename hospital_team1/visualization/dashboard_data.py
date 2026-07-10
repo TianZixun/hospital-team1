@@ -54,6 +54,21 @@ TRIAGE_SEQUENCE = (
     TriageLevel.NON_URGENT,
 )
 
+QUEUE_MODE_DETAILS = [
+    {
+        "key": "heap",
+        "name": "Heap Queue (堆队列)",
+        "desc": "Uses Python heap storage for priority ordering.",
+        "complexity": "Enqueue O(log n), dequeue O(log n), peek O(1).",
+    },
+    {
+        "key": "ordered_list",
+        "name": "Ordered Linked Queue (有序链表队列)",
+        "desc": "Uses an ordered linked list to keep the queue sorted.",
+        "complexity": "Enqueue O(n), dequeue O(1), peek O(1).",
+    },
+]
+
 
 def reset_runtime_state() -> None:
     RUNTIME_ADDED_PATIENTS.clear()
@@ -629,10 +644,17 @@ def _build_wait_trend_chart(
     return lines, labels
 
 
-def get_dashboard_context(snapshot_offset_minutes: int = 0) -> dict[str, object]:
+def get_dashboard_context(
+    snapshot_offset_minutes: int = 0,
+    queue_mode: str = "heap",
+) -> dict[str, object]:
     visible_patients = _load_visible_patients()
     current_time = _resolve_snapshot_time(snapshot_offset_minutes)
     real_time = _real_now()
+    selected_queue_mode = next(
+        (mode for mode in QUEUE_MODE_DETAILS if mode["key"] == queue_mode),
+        QUEUE_MODE_DETAILS[0],
+    )
 
     snapshot_state = _build_snapshot_state(visible_patients, current_time)
     waiting_patients = list(snapshot_state["waiting_patients"])
@@ -787,6 +809,8 @@ def get_dashboard_context(snapshot_offset_minutes: int = 0) -> dict[str, object]
                 "desc": "Implemented in hospital_team1/queues/ordered_linked_priority_queue.py",
             },
         ],
+        "selected_queue_mode": selected_queue_mode,
+        "queue_mode_note": "Both implementations are expected to return the same patient order. The difference is the internal data structure and performance cost.",
         "control_buttons": [
             {
                 "action": "run-simulation",

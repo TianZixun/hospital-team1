@@ -51,6 +51,14 @@ class TestDashboardApp(unittest.TestCase):
         query = response.request.path + "?" + response.request.query_string.decode()
         self.assertIn("snapshot_offset", query)
 
+    def test_dashboard_route_accepts_queue_mode(self) -> None:
+        response = self.client.get("/?snapshot_offset=20&queue_mode=ordered_list")
+
+        self.assertEqual(response.status_code, 200)
+        body = response.get_data(as_text=True)
+        self.assertIn('data-current-queue-mode="ordered_list"', body)
+        self.assertIn("Ordered Linked Queue", body)
+
     def test_dashboard_context_uses_live_active_queue(self) -> None:
         context = get_dashboard_context(0)
 
