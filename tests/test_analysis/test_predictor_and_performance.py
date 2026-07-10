@@ -1,8 +1,8 @@
 from datetime import datetime
 import unittest
 
-from hospital_team1.analysis.performance import benchmark_priority_queues
-from hospital_team1.analysis.predictor import predict_overtime_patients
+from hospital_team1.analysis_part2.performance import benchmark_priority_queues
+from hospital_team1.analysis_part2.predictor import predict_overtime_patients
 
 
 class TestPredictorAndPerformance(unittest.TestCase):

@@ -15,8 +15,7 @@ COPY scripts ./scripts
 COPY slides ./slides
 COPY tests ./tests
 COPY main.py test.py serve.py wsgi.py ./
-COPY performance_results.csv performance_results.csv
-COPY performance_comparison.png performance_comparison.png
+COPY results ./results
 COPY require.rtf require.rtf
 
 RUN pip install --no-cache-dir .

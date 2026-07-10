@@ -1,6 +1,6 @@
 import unittest
 
-from hospital_team1.models import TriageLevel
+from hospital_team1.models_part1 import TriageLevel
 
 
 class TestTriageLevel(unittest.TestCase):

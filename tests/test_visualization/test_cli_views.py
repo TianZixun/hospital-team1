@@ -1,8 +1,8 @@
 from datetime import datetime
 import unittest
 
-from hospital_team1.models import Patient, TriageLevel
-from hospital_team1.visualization.cli_views import render_waiting_room_table
+from hospital_team1.models_part1 import Patient, TriageLevel
+from hospital_team1.visualization_part2.cli_views import render_waiting_room_table
 
 
 class TestCliViews(unittest.TestCase):

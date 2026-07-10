@@ -1,14 +1,14 @@
 from datetime import datetime, timedelta
 import unittest
 
-from hospital_team1.analysis.waiting_room_analytics import (
+from hospital_team1.analysis_part2.waiting_room_analytics import (
     analyze_avg_wait_by_triage,
     detect_priority_inversions,
     estimate_wait_for_new_patient,
     run_waiting_room_analytics,
 )
-from hospital_team1.models import Patient, TriageLevel
-from hospital_team1.structures import WaitingRoom
+from hospital_team1.models_part1 import Patient, TriageLevel
+from hospital_team1.structures_part1 import WaitingRoom
 
 
 def make_patient(

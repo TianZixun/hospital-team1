@@ -1,9 +1,9 @@
 import unittest
 
-from hospital_team1.analysis.performance import benchmark_priority_queues
-from hospital_team1.data.dataset_generator import DatasetConfig
-from hospital_team1.simulation.engine import SimulationConfig
-from hospital_team1.visualization.cli_views import render_waiting_room_table
+from hospital_team1.analysis_part2.performance import benchmark_priority_queues
+from hospital_team1.data_part1.dataset_generator import DatasetConfig
+from hospital_team1.simulation_part2.engine import SimulationConfig
+from hospital_team1.visualization_part2.cli_views import render_waiting_room_table
 
 
 class TestScaffoldImports(unittest.TestCase):

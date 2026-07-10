@@ -1,6 +1,6 @@
 import unittest
 
-from hospital_team1.structures import heappop, heappush
+from hospital_team1.structures_part1 import heappop, heappush
 
 
 class TestMyHeap(unittest.TestCase):

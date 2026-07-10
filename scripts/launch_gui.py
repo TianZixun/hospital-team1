@@ -1,5 +1,5 @@
 from _bootstrap import PROJECT_ROOT  # noqa: F401
-from hospital_team1.visualization import launch_gui
+from hospital_team1.visualization_part2 import launch_gui
 
 
 def main() -> None:

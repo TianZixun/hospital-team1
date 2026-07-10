@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 
-from hospital_team1.visualization.gui import create_app
+from hospital_team1.visualization_part2.gui import create_app
 
 try:
     from waitress import serve as waitress_serve

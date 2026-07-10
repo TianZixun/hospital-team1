@@ -2,11 +2,11 @@ from datetime import datetime
 import unittest
 from unittest.mock import patch
 
-from hospital_team1.analysis.waiting_room_insights import (
+from hospital_team1.analysis_part2.waiting_room_insights import (
     detect_priority_anomalies,
     estimate_wait_time_for_new_arrival,
 )
-from hospital_team1.models import Patient, TriageLevel
+from hospital_team1.models_part1 import Patient, TriageLevel
 
 
 def make_patient(
@@ -27,7 +27,7 @@ def make_patient(
 
 
 class TestWaitingRoomInsights(unittest.TestCase):
-    @patch("hospital_team1.analysis.waiting_room_insights.load_patients_from_csv")
+    @patch("hospital_team1.analysis_part2.waiting_room_insights.load_patients_from_csv")
     def test_detect_priority_anomalies_returns_list(self, mock_load) -> None:
         mock_load.return_value = [
             make_patient("1", TriageLevel.URGENT, 8, 0, 40),
@@ -38,7 +38,7 @@ class TestWaitingRoomInsights(unittest.TestCase):
 
         self.assertIsInstance(anomalies, list)
 
-    @patch("hospital_team1.analysis.waiting_room_insights.load_patients_from_csv")
+    @patch("hospital_team1.analysis_part2.waiting_room_insights.load_patients_from_csv")
     def test_estimate_wait_time_for_new_arrival_returns_estimates(self, mock_load) -> None:
         mock_load.return_value = [
             make_patient("1", TriageLevel.NON_URGENT, 8, 0, 30),

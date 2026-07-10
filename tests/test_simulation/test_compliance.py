@@ -1,8 +1,8 @@
 import unittest
 from datetime import datetime
 
-from hospital_team1.models import Patient, TriageLevel
-from hospital_team1.simulation.compliance import is_wait_time_compliant
+from hospital_team1.models_part1 import Patient, TriageLevel
+from hospital_team1.simulation_part2.compliance import is_wait_time_compliant
 
 
 def _make_patient(triage_level: TriageLevel) -> Patient:

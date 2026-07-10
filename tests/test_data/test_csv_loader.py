@@ -3,7 +3,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from hospital_team1.data.csv_loader import load_patients_from_csv
+from hospital_team1.data_part1.csv_loader import load_patients_from_csv
 
 
 class TestCsvLoader(unittest.TestCase):

@@ -2,12 +2,12 @@ from datetime import datetime
 from pathlib import Path
 
 from _bootstrap import PROJECT_ROOT  # noqa: F401
-from hospital_team1.data.dataset_generator import (
+from hospital_team1.data_part1.dataset_generator import (
     DatasetConfig,
     export_patients_to_csv,
     generate_patients,
 )
-from hospital_team1.models import TriageLevel
+from hospital_team1.models_part1 import TriageLevel
 
 
 def main() -> None:

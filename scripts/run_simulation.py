@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from _bootstrap import PROJECT_ROOT  # noqa: F401
-from hospital_team1.simulation.engine import SimulationConfig, SimulationEngine
-from hospital_team1.simulation.report import build_shift_report
+from hospital_team1.simulation_part2.engine import SimulationConfig, SimulationEngine
+from hospital_team1.simulation_part2.report import build_shift_report
 
 
 def main() -> None:

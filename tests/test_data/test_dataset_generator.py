@@ -3,13 +3,13 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from hospital_team1.data.csv_loader import load_patients_from_csv
-from hospital_team1.data.dataset_generator import (
+from hospital_team1.data_part1.csv_loader import load_patients_from_csv
+from hospital_team1.data_part1.dataset_generator import (
     DatasetConfig,
     export_patients_to_csv,
     generate_patients,
 )
-from hospital_team1.models import TriageLevel
+from hospital_team1.models_part1 import TriageLevel
 
 
 class TestDatasetGenerator(unittest.TestCase):

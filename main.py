@@ -4,11 +4,11 @@ from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
-from hospital_team1.data.csv_loader import load_patients_from_csv
-from hospital_team1.models import Patient, TriageLevel
-from hospital_team1.queues.heap_priority_queue import HeapPriorityQueue
-from hospital_team1.queues import SortedLinkedListPriorityQueue
-from hospital_team1.structures import WaitingRoom
+from hospital_team1.data_part1.csv_loader import load_patients_from_csv
+from hospital_team1.models_part1 import Patient, TriageLevel
+from hospital_team1.queues_part1.heap_priority_queue import HeapPriorityQueue
+from hospital_team1.queues_part1 import SortedLinkedListPriorityQueue
+from hospital_team1.structures_part1 import WaitingRoom
 
 
 DATASET_PATH = Path(__file__).resolve().parent / "datasets" / "patients_dataset.csv"

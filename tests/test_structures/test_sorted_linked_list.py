@@ -1,6 +1,6 @@
 import unittest
 
-from hospital_team1.structures import SortedLinkedList
+from hospital_team1.structures_part1 import SortedLinkedList
 
 
 class TestSortedLinkedList(unittest.TestCase):

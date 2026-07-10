@@ -1,8 +1,8 @@
 from datetime import datetime
 import unittest
 
-from hospital_team1.analysis.timeout_prediction import summarize_timeout_risk
-from hospital_team1.models import Patient, TriageLevel
+from hospital_team1.analysis_part2.timeout_prediction import summarize_timeout_risk
+from hospital_team1.models_part1 import Patient, TriageLevel
 
 
 class TestTimeoutPrediction(unittest.TestCase):

@@ -2,9 +2,9 @@ from datetime import datetime, timedelta
 import unittest
 from unittest.mock import patch
 
-from hospital_team1.models import Patient, TriageLevel
-from hospital_team1.visualization import create_app
-from hospital_team1.visualization.dashboard_data import (
+from hospital_team1.models_part1 import Patient, TriageLevel
+from hospital_team1.visualization_part2 import create_app
+from hospital_team1.visualization_part2.dashboard_data import (
     add_runtime_patient,
     complete_runtime_patient,
     get_dashboard_context,
@@ -51,6 +51,14 @@ class TestDashboardApp(unittest.TestCase):
         query = response.request.path + "?" + response.request.query_string.decode()
         self.assertIn("snapshot_offset", query)
 
+    def test_dashboard_route_accepts_queue_mode(self) -> None:
+        response = self.client.get("/?snapshot_offset=20&queue_mode=ordered_list")
+
+        self.assertEqual(response.status_code, 200)
+        body = response.get_data(as_text=True)
+        self.assertIn('data-current-queue-mode="ordered_list"', body)
+        self.assertIn("Ordered Linked Queue", body)
+
     def test_dashboard_context_uses_live_active_queue(self) -> None:
         context = get_dashboard_context(0)
 
@@ -69,9 +77,9 @@ class TestDashboardApp(unittest.TestCase):
         )
         self.assertEqual(context["overtime_card"]["details"][0][1], "1")
 
-    @patch("hospital_team1.visualization.dashboard_data.run_shift_simulation")
-    @patch("hospital_team1.visualization.dashboard_data.build_queue_snapshot")
-    @patch("hospital_team1.visualization.dashboard_data.load_patients_from_csv")
+    @patch("hospital_team1.visualization_part2.dashboard_data.run_shift_simulation")
+    @patch("hospital_team1.visualization_part2.dashboard_data.build_queue_snapshot")
+    @patch("hospital_team1.visualization_part2.dashboard_data.load_patients_from_csv")
     def test_dashboard_context_shows_up_to_ten_queue_patients(
         self,
         mock_load_patients,
@@ -104,9 +112,9 @@ class TestDashboardApp(unittest.TestCase):
         )
         self.assertEqual(context["waiting_room_patients"][-1]["patient_id"], "P0010")
 
-    @patch("hospital_team1.visualization.dashboard_data.run_shift_simulation")
-    @patch("hospital_team1.visualization.dashboard_data.build_queue_snapshot")
-    @patch("hospital_team1.visualization.dashboard_data.load_patients_from_csv")
+    @patch("hospital_team1.visualization_part2.dashboard_data.run_shift_simulation")
+    @patch("hospital_team1.visualization_part2.dashboard_data.build_queue_snapshot")
+    @patch("hospital_team1.visualization_part2.dashboard_data.load_patients_from_csv")
     def test_heap_and_predicted_waits_follow_priority_order(
         self,
         mock_load_patients,
@@ -220,8 +228,8 @@ class TestDashboardApp(unittest.TestCase):
         payload = response.get_json()
         self.assertFalse(payload["ok"])
 
-    @patch("hospital_team1.visualization.dashboard_data.build_queue_snapshot")
-    @patch("hospital_team1.visualization.dashboard_data.load_patients_from_csv")
+    @patch("hospital_team1.visualization_part2.dashboard_data.build_queue_snapshot")
+    @patch("hospital_team1.visualization_part2.dashboard_data.load_patients_from_csv")
     def test_complete_patient_action_removes_completed_patient(
         self,
         mock_load_patients,

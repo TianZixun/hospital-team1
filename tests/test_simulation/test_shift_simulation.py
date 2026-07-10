@@ -2,9 +2,9 @@ from datetime import datetime, timedelta
 import unittest
 from unittest.mock import patch
 
-from hospital_team1.models import Patient, TriageLevel
-from hospital_team1.simulation.engine import SimulationConfig, SimulationEngine
-from hospital_team1.simulation.shift_simulation import (
+from hospital_team1.models_part1 import Patient, TriageLevel
+from hospital_team1.simulation_part2.engine import SimulationConfig, SimulationEngine
+from hospital_team1.simulation_part2.shift_simulation import (
     SHIFT_START,
     build_queue_snapshot,
     project_waiting_starts,
@@ -83,7 +83,7 @@ class TestShiftSimulation(unittest.TestCase):
         self.assertEqual(result["records"][1]["patient"].patient_id, "3")
         self.assertFalse(result["records"][2]["within_threshold"])
 
-    @patch("hospital_team1.simulation.engine.load_patients_from_csv")
+    @patch("hospital_team1.simulation_part2.engine.load_patients_from_csv")
     def test_simulation_engine_runs_with_loaded_patients(self, mock_load) -> None:
         mock_load.return_value = [
             make_patient("1", TriageLevel.URGENT, 0, 20),
